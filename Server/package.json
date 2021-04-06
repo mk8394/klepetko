@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Node.js server for Klepetko.",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Skupina8",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.7",
+    "shortid": "^2.2.16",
+    "socket.io": "^2.4.1"
+  }
+}
