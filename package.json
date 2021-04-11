@@ -1,0 +1,25 @@
+{
+  "name": "klepetko",
+  "version": "1.0.0",
+  "description": "Spletna klepetalnica za osnovnosolce.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk8394/klepetko.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mk8394/klepetko/issues"
+  },
+  "homepage": "https://github.com/mk8394/klepetko#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "shortid": "^2.2.16",
+    "socket.io": "^4.0.1"
+  }
+}
