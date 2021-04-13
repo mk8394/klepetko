@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/client/index.html');
 });
 
+app.get('/api/sprite', (req, res) => {
+    res.sendFile(__dirname + '/client/Assets/Test_Sprites/flatboy/Idle (1).png');
+});
+
 app.use(express.static('client'));
 
 // Client handling
@@ -34,8 +38,6 @@ io.on('connection', (socket) => {
 
     socket.on('register', (username) => {
         player.username = username;
-        player.sprite = new Image();
-        player.sprite.src = './Client/Assets/Test_Sprites/flatboy/Idle (1).png'
         console.log(`${player.username} has joned the game.`);
 
         socket.emit('spawn', player);

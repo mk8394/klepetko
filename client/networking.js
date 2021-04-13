@@ -51,5 +51,7 @@ const connect = () => {
 
 const drawPlayer = (player) => {
     ctx.clearRect(0, 0, 720, 480);
-    ctx.drawImage(player.sprite, player.position.x, player.position.y);
+    let sprite = new Image();
+    sprite.src = player.sprite;
+    ctx.drawImage(sprite, player.position.x, player.position.y, 100, 100);
 }

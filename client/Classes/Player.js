@@ -6,7 +6,7 @@ module.exports = class Player {
         this.id = shortid.generate();
         this.username = username;
         this.position = new Vector2(game_width / 2, game_height / 2);
-        this.sprite;
+        this.sprite = './api/sprite';
         // this.sprite.src;
     }
 
