@@ -1,7 +1,7 @@
 module.exports = class Vector2 {
-    constructor(X = 200, Y = 200) {
-        this.x = X;
-        this.y = Y;
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
     }
 
     Magnitude() {

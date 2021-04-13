@@ -8,6 +8,8 @@ const port = 3000;
 
 const io = require('socket.io')(server);
 
+const Image = require('canvas').Image;
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/client/index.html');
 });
@@ -16,6 +18,9 @@ app.use(express.static('client'));
 
 // Client handling
 const Player = require('./client/Classes/Player');
+const Game = require('./client/Classes/Game');
+
+let game = new Game();
 
 let sockets = [];
 let players = [];
@@ -23,12 +28,14 @@ let players = [];
 io.on('connection', (socket) => {
     console.log('A user has connected.');
 
-    let player = new Player('undefined');
+    let player = new Player('undefined', game.width, game.height);
     sockets[player.id] = socket;
     players[player.id] = player;
 
     socket.on('register', (username) => {
         player.username = username;
+        player.sprite = new Image();
+        player.sprite.src = './Client/Assets/Test_Sprites/flatboy/Idle (1).png'
         console.log(`${player.username} has joned the game.`);
 
         socket.emit('spawn', player);
