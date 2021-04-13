@@ -2,7 +2,6 @@ let ctx = document.getElementById('ctx').getContext('2d');
 let username = document.getElementById('username');
 let connectBtn = document.getElementById('connectBtn');
 
-
 const registerEL = () => {
     if (!username.value) {
         connectBtn.disabled = true
@@ -24,7 +23,17 @@ const connect = () => {
     }
 
     socket.on('spawn', (player) => {
-        ctx.fillText(player.username, Math.random() * 100, Math.random() * 100);
+        drawPlayer(player);
         console.log(player);
     });
+
+    socket.on('updatePosition', (player) => {
+        console.log("drawing?");
+        drawPlayer(player);
+    });
+}
+
+const drawPlayer = (player) => {
+    ctx.clearRect(0, 0, 720, 480);
+    ctx.fillText(player.username, player.position.x++, player.position.y++);
 }

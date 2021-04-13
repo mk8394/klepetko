@@ -7,4 +7,8 @@ module.exports = class Player {
         this.username = username;
         this.position = new Vector2();
     }
+
+    // draw() {
+    //     ctx.fillText(this.username, Math.random() * 100, Math.random() * 100);
+    // }
 }

@@ -17,13 +17,13 @@ app.use(express.static('client'));
 // Client handling
 const Player = require('./client/Classes/Player');
 
-let sockets = {};
-let players = {};
+let sockets = [];
+let players = [];
 
 io.on('connection', (socket) => {
     console.log('A user has connected.');
 
-    let player = new Player('');
+    let player = new Player('undefined');
     sockets[player.id] = socket;
     players[player.id] = player;
 
@@ -41,12 +41,23 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
+        console.log(`${player.username} has left the game`);
+
         delete sockets[player.id];
         delete players[player.id];
-
-        console.log('A user has disconnected.')
     });
 });
+
+setInterval (() => {
+    for(let i in players) {
+        let socket = sockets[i];
+        // let updatePosition = {
+        //     "playerID": players[i].id,
+        //     "playerPOS": players[i].position
+        // }
+        socket.emit('updatePosition', players[i]);
+    }
+}, 1000/25);
 
 server.listen(port, () => {
     console.log(`Server started on port ${port}.`);
