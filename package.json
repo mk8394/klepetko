@@ -1,7 +1,7 @@
 {
-  "name": "klepetko",
-  "version": "1.0.0",
-  "description": "Spletna klepetalnica za osnovnosolce.",
+  "name": "pahser",
+  "version": "0.0.1",
+  "description": "Phaser take on Klepetko.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,18 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/mk8394/klepetko.git"
   },
-  "author": "",
+  "keywords": [],
+  "author": "skupina8",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mk8394/klepetko/issues"
-  },
-  "homepage": "https://github.com/mk8394/klepetko#readme",
   "dependencies": {
-    "@mapbox/node-pre-gyp": "^1.0.3",
-    "canvas": "^2.7.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
-    "shortid": "^2.2.16",
+    "phaser": "^3.54.0",
     "socket.io": "^4.0.1"
   }
 }
