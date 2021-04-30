@@ -12,8 +12,8 @@ app.use(express.static(path.join(__dirname, '/client')));
 
 const id = require('shortid');
 
-let sockets = [];
-let users = [];
+// let sockets = [];
+let users = {};
 let playerID;
 
 io.on('connection', (socket) => {
@@ -21,19 +21,32 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log('A user disconnected.');
-        delete sockets[playerID];
+        // delete sockets[playerID];
         delete users[playerID];
-        console.log(playerID);
+        // console.log(playerID);
         socket.broadcast.emit('disconnected', playerID);
     });
 
     socket.on('register', (user) => {
         let user_id = id.generate();
-        sockets[user_id] = socket;
+        // sockets[user_id] = socket;
         users[user_id] = user;
         playerID = user_id;
+
+        // Send player id
         socket.emit('registerPlayer', user_id);
+
         // socket.broadcast.emit('register', user, user_id);
+        console.log(user);
+
+        // Spawn other users in your client
+        for(let id in users) {
+            if(id != playerID) {
+                socket.emit('spawnUser', users[id], id);
+            }
+        };
+
+        // Spawn your player in other clients
         socket.broadcast.emit('spawnUser', user, user_id);
     });
 
@@ -42,8 +55,9 @@ io.on('connection', (socket) => {
         
     // });
 
-    socket.on('playerPosition', (x, y) => {
+    socket.on('playerPosition', (user_id, userVelocity) => {
         // console.log('Player is located at:', x, y);
+        socket.broadcast.emit('updatePosition', user_id, userVelocity);
     });
 
 });

@@ -1,15 +1,20 @@
+import LoginScene from './LoginScene.js';
 import MainScene from './MainScene.js'
 
 var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 451,
-    //parent: 'name-of-the-div',
+    parent: 'game', // Name of the parent DIV
+    dom: {
+        createContainer: true
+    },
     physics: {
         default: 'matter',
         matter: {
             debug: true,
-            gravity: { y: 0 }
+            gravity: { y: 0 },
+            setBounds: true
         }
     },
     plugins: {
@@ -21,7 +26,7 @@ var config = {
             }
         ]
     },
-    scene: [MainScene]
+    scene: [LoginScene, MainScene]
 };
 
 var game = new Phaser.Game(config);
