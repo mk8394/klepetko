@@ -56,12 +56,7 @@ export default class MainScene extends Phaser.Scene {
             x: 400,
             y: 300,
             texture: 'player',
-            frame: '3',
-            options: {
-                collisionFilter: {
-                    group: '1' // The bodies with -1 will never collide
-                }
-            }
+            frame: '3'
         }, socket, null, this.playerName);
 
         this.player.inputKeys = this.input.keyboard.addKeys({
@@ -74,6 +69,8 @@ export default class MainScene extends Phaser.Scene {
         // Prevent rotation
         this.matter.body.setInertia(this.player.body, Infinity);
         this.player.setFriction(0);
+        // Disable collision between players
+        this.player.body.collisionFilter.group = -1;
 
         console.log(this.player);
         this.player.server.register(this.player);
@@ -97,17 +94,14 @@ export default class MainScene extends Phaser.Scene {
             x: user.x,
             y: user.y,
             texture: user.texture,
-            frame: user.frame,
-            options: {
-                collisionFilter: {
-                    group: '1' // The bodies with -1 will never collide
-                }
-            }
+            frame: user.frame
         }, socket, user_id, user.username);
 
         // Prevent rotation
         this.matter.body.setInertia(newUser.body, Infinity);
         newUser.setFriction(0);
+        // Disable collision between players
+        newUser.body.collisionFilter.group = -1;
 
         // newUser.server.joinGame(newUser);
         this.users[user_id] = newUser;

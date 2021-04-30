@@ -55,8 +55,16 @@ io.on('connection', (socket) => {
         
     // });
 
-    socket.on('playerPosition', (user_id, userVelocity) => {
+    socket.on('playerPosition', (user_id, userVelocity, x, y) => {
         // console.log('Player is located at:', x, y);
+ 
+        if(users[user_id]) {
+            users[user_id].x = x;
+            users[user_id].y = y;
+            console.log(x, y);
+        }
+            
+        
         socket.broadcast.emit('updatePosition', user_id, userVelocity);
     });
 

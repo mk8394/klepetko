@@ -47,7 +47,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         }
 
         // Send data to server
-        this.server.playerPosition(this.id, playerVelocity);
+        this.server.playerPosition(this.id, playerVelocity, this.x, this.y);
     }
 
     remove() {

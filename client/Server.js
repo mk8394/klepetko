@@ -11,7 +11,7 @@ export default class Server {
         this.socket.emit('joinGame', user);
     }
 
-    playerPosition(x, y) {
-        this.socket.emit('playerPosition', x, y);
+    playerPosition(id, playerVelocity, x, y) {
+        this.socket.emit('playerPosition', id, playerVelocity, x, y);
     }
 }
