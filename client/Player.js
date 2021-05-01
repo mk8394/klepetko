@@ -3,11 +3,12 @@ import Server from './Server.js';
 export default class Player extends Phaser.Physics.Matter.Sprite {
     constructor(data, socket, id, username) {
         let { scene, x, y, texture, frame } = data;
-        super(scene.matter.world, x, y, texture, frame);
+        let options = {label: username};
+        super(scene.matter.world, x, y, texture, frame, options);
         this.scene.add.existing(this);
         this.server = new Server(socket);
         this.id = id;
-        this.username = username;
+        this.username = this.scene.add.text(x, y-50, username).setOrigin(0.5, 0.5);
     }
 
     static preload(scene) {
@@ -20,6 +21,8 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     }
 
     update() {
+        this.username.y = this.y-50;
+        this.username.x = this.x;
         const speed = 2.5;
         let playerVelocity = new Phaser.Math.Vector2();
 

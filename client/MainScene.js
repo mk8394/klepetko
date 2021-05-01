@@ -25,7 +25,7 @@ export default class MainScene extends Phaser.Scene {
         socket.on('registerPlayer', (id) => {
             this.player.id = id;
             this.users[this.player.id] = this.player;
-            console.log(this.users);
+            console.log('your player id is ', id);
         });
 
         // socket.on('register', (user, id) => {
@@ -39,15 +39,21 @@ export default class MainScene extends Phaser.Scene {
 
         socket.on('disconnected', (user_id) => {
             console.log('a  user disconnected');
-            if (this.users[user_id]) {
+            if(this.player.id == user_id)
+                console.log('this is the player, dont delete');
+            else if (this.users[user_id]) {
                 this.users[user_id].remove();
                 delete this.users[user_id];
             }
+            console.log('deleted user with id ', user_id)
         });
 
-        socket.on('updatePosition', (id, userVelocity) => {
+
+        socket.on('updatePosition', (id, userVelocity, x, y) => {
             if (this.users[id]) {
-                this.users[id].setVelocity(userVelocity.x, userVelocity.y);
+                // this.users[id].setVelocity(userVelocity.x, userVelocity.y);
+                this.users[id].x = x;
+                this.users[id].y = y;
             }
         });
     }
@@ -74,6 +80,7 @@ export default class MainScene extends Phaser.Scene {
         this.player.setFriction(0);
         // Disable collision between players
         this.player.body.collisionFilter.group = -1;
+        this.player.name = this.playerName;
 
         console.log(this.player);
         this.player.server.register(this.player);
@@ -96,7 +103,7 @@ export default class MainScene extends Phaser.Scene {
             scene: this,
             x: user.x,
             y: user.y,
-            texture: user.texture,
+            texture: 'player',
             frame: user.frame
         }, socket, user_id, user.username);
 
