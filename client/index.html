@@ -4,10 +4,30 @@
 <head>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.23.0/dist/phaser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/phaser-matter-collision-plugin"></script>
+    <link rel="stylesheet" href="assets/chat.css">
 </head>
 
 <body>
     <div id="game"></div>
+
+    <div id="chat" style="display: none;">
+        <div class="chat-container">
+            <main class="chat-main">
+                <div class="chat-sidebar">
+                    <h3><i class="fas fa-comments"></i> Soba:</h3>
+                    <h2 id="room-name">Igrišče</h2>
+                </div>
+                <div class="chat-messages">
+                </div>
+            </main>
+            <div class="chat-form-container">
+                <form id="chat-form">
+                    <input id="msg" type="text" placeholder="Enter Message" required autocomplete="off" />
+                    <button class="btn"><i class="fas fa-paper-plane"></i> Pošlji</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="game.js"></script>

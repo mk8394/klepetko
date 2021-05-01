@@ -1,6 +1,9 @@
 import Player from './Player.js';
 const socket = io('http://localhost:3000');
 
+const chatForm = document.getElementById("chat-form");
+const chatMessages = document.querySelector(".chat-messages");
+
 export default class MainScene extends Phaser.Scene {
     constructor() {
         super('MainScene');
@@ -36,21 +39,21 @@ export default class MainScene extends Phaser.Scene {
 
         socket.on('disconnected', (user_id) => {
             console.log('a  user disconnected');
-            if(this.users[user_id]) {
+            if (this.users[user_id]) {
                 this.users[user_id].remove();
                 delete this.users[user_id];
             }
         });
 
         socket.on('updatePosition', (id, userVelocity) => {
-            if(this.users[id]) {
+            if (this.users[id]) {
                 this.users[id].setVelocity(userVelocity.x, userVelocity.y);
             }
         });
     }
-    
+
     create() {
-        this.add.image(400, 451/2, 'outside');
+        this.add.image(400, 451 / 2, 'outside');
         this.player = new Player({
             scene: this,
             x: 400,
@@ -107,4 +110,35 @@ export default class MainScene extends Phaser.Scene {
         this.users[user_id] = newUser;
         console.log(this.users);
     }
+}
+
+socket.on("message", message => {
+    console.log(message);
+    outputMessage(message);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+
+chatForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    // get message text
+    const msg = e.target.elements.msg.value;
+
+    // emit message to server
+    socket.emit("chatMessage", msg);
+
+    // clear input
+    e.target.elements.msg.value = "";
+    e.target.elements.msg.focus();
+});
+
+// Output message to DOM
+function outputMessage(message) {
+    const div = document.createElement("div");
+    div.classList.add("message");
+    div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>
+        <p class="text">
+        ${message.text}
+    </p>`;
+    document.querySelector(".chat-messages").appendChild(div);
 }

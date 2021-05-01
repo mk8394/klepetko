@@ -18,7 +18,10 @@ export default class LoginScene extends Phaser.Scene {
             .setInteractive({useHandCursor: true})
             .on('pointerdown', () => {
                 let username = this.login.getChildByName('login').value;
+                var chat = document.getElementById("chat");
+                chat.style.display = "block";
                 this.startGame(username);
+
             });
     }
 

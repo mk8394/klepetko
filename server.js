@@ -16,6 +16,9 @@ const id = require('shortid');
 let users = {};
 let playerID;
 
+const formatMessage = require("./client/messages");
+const botName = "KlepetkoBot";
+
 io.on('connection', (socket) => {
     console.log('A user connected.');
 
@@ -25,6 +28,7 @@ io.on('connection', (socket) => {
         delete users[playerID];
         // console.log(playerID);
         socket.broadcast.emit('disconnected', playerID);
+        io.emit("message", formatMessage(botName, "Oseba [] je zapustila dvorišče."));
     });
 
     socket.on('register', (user) => {
@@ -50,6 +54,10 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('spawnUser', user, user_id);
     });
 
+    socket.emit('message', formatMessage(botName, "Dobrodošli v klepetku!"));
+    // broadcast when a user connects
+    socket.broadcast.emit("message", formatMessage(botName, "Oseba [] je prišla na dvorišče."));
+
     // socket.on('joinGame', (user) => {
     //     console.log('User joined: ', user);
         
@@ -66,6 +74,11 @@ io.on('connection', (socket) => {
             
         
         socket.broadcast.emit('updatePosition', user_id, userVelocity);
+    });
+
+    // Listen for chatMessage
+    socket.on("chatMessage", msg => {
+        io.emit("message", formatMessage(playerID, msg));
     });
 
 });
