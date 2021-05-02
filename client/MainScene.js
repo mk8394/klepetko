@@ -39,7 +39,7 @@ export default class MainScene extends Phaser.Scene {
 
         socket.on('disconnected', (user_id) => {
             console.log('a  user disconnected');
-            if(this.player.id == user_id)
+            if (this.player.id == user_id)
                 console.log('this is the player, dont delete');
             else if (this.users[user_id]) {
                 this.users[user_id].remove();
@@ -54,7 +54,35 @@ export default class MainScene extends Phaser.Scene {
                 // this.users[id].setVelocity(userVelocity.x, userVelocity.y);
                 this.users[id].x = x;
                 this.users[id].y = y;
+                this.users[id].username.y = y - 50;
+                this.users[id].username.x = x;
+                if (this.users[id].bubble && this.users[id].bubbleContent) {
+                    this.users[id].bubble.x = this.users[id].x;
+                    this.users[id].bubble.y = this.users[id].y - 100;
+                    this.users[id].bubbleContent.x = this.users[id].x + 10;
+                    this.users[id].bubbleContent.y = this.users[id].y - 100;
+                }
             }
+        });
+
+        socket.on("message", message => {
+            console.log(message);
+            this.outputMessage(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+
+        chatForm.addEventListener("submit", e => {
+            e.preventDefault();
+
+            // get message text
+            const msg = e.target.elements.msg.value;
+
+            // emit message to server
+            socket.emit("chatMessage", this.player.id, msg);
+
+            // clear input
+            e.target.elements.msg.value = "";
+            e.target.elements.msg.focus();
         });
     }
 
@@ -84,6 +112,8 @@ export default class MainScene extends Phaser.Scene {
 
         console.log(this.player);
         this.player.server.register(this.player);
+
+        // this.player.createSpeechBubble(this.player.x, this.player.y - 100, 100, 50, 'sample text');
     }
 
     update() {
@@ -105,7 +135,7 @@ export default class MainScene extends Phaser.Scene {
             y: user.y,
             texture: 'player',
             frame: user.frame
-        }, socket, user_id, user.username);
+        }, socket, user_id, user.name);
 
         // Prevent rotation
         this.matter.body.setInertia(newUser.body, Infinity);
@@ -117,35 +147,34 @@ export default class MainScene extends Phaser.Scene {
         this.users[user_id] = newUser;
         console.log(this.users);
     }
-}
 
-socket.on("message", message => {
-    console.log(message);
-    outputMessage(message);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-});
-
-chatForm.addEventListener("submit", e => {
-    e.preventDefault();
-
-    // get message text
-    const msg = e.target.elements.msg.value;
-
-    // emit message to server
-    socket.emit("chatMessage", msg);
-
-    // clear input
-    e.target.elements.msg.value = "";
-    e.target.elements.msg.focus();
-});
-
-// Output message to DOM
-function outputMessage(message) {
-    const div = document.createElement("div");
-    div.classList.add("message");
-    div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>
+    // Output message to DOM
+    outputMessage(message) {
+        const div = document.createElement("div");
+        div.classList.add("message");
+        div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>
         <p class="text">
         ${message.text}
-    </p>`;
-    document.querySelector(".chat-messages").appendChild(div);
+        </p>`;
+        document.querySelector(".chat-messages").appendChild(div);
+
+
+        if (this.users[message.id]) {
+            this.users[message.id].createSpeechBubble(this.users[message.id].x, this.users[message.id].y - 100, 100, 50, message.text);
+
+            // Reset time to live
+            this.users[message.id].scene.time.removeAllEvents();
+
+            // Time to live for this.player.bubble
+            this.users[message.id].scene.time.addEvent({
+                delay: 3000,
+                callback: () => {
+                    this.users[message.id].bubbleContent.destroy();
+                    this.users[message.id].bubble.destroy();
+                }
+            });
+        }
+
+    }
 }
+

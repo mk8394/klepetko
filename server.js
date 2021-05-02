@@ -30,7 +30,10 @@ io.on('connection', (socket) => {
         // });
 
         console.log('A user disconnected.');
-        io.emit("message", formatMessage(botName, `Oseba ${users[ids[socket.id]].name} je zapustila igro.`));
+        if(users[ids[socket.id]]) {
+            io.emit("message", formatMessage(botName, `Oseba ${users[ids[socket.id]].name} je zapustila igro.`));
+        }
+        
         // delete sockets[playerID];
         delete users[ids[socket.id]];
         // console.log(playerID);
@@ -87,8 +90,8 @@ io.on('connection', (socket) => {
     });
 
     // Listen for chatMessage
-    socket.on("chatMessage", msg => {
-        io.emit("message", formatMessage(playerID, msg));
+    socket.on("chatMessage", (user_id, msg) => {
+        io.emit("message", formatMessage(users[user_id].name, msg, user_id));
     });
 
 });
