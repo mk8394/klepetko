@@ -78,7 +78,7 @@ export default class MainScene extends Phaser.Scene {
     create() {
 
         // Display background image
-        this.add.image(400, 451 / 2, 'outside');
+        this.createBackground();
 
         // Create a player game object
         this.player = new Player({
@@ -111,6 +111,30 @@ export default class MainScene extends Phaser.Scene {
 
     }
 
+    createBackground() {
+        this.add.image(400, 451 / 2, 'outside');
+
+        this.schoolEntrance = this.matter.add.rectangle(400, 110, 100, 50, 0xff0000, 1);
+        this.schoolEntrance.isStatic = true;
+        this.schoolEntranceBorder = this.matter.add.rectangle(400, 110, 120, 70, 0xff0000, 1);
+        this.schoolEntranceBorder.isStatic = true;
+        // Phaser.Physics.Matter.add.collider(this.schoolEntrance, this.player);
+
+        this.schoolEntrance.onCollideCallback = () => {
+            this.enterText = this.add.text(400, 100, 'Pritisni E za vstop v šolo');
+            console.log('enter da skul');
+            
+            this.input.keyboard.on('keydown_E', ()=>this.enterSchool(), this);
+        }
+
+        this.schoolEntrance.onCollideEndCallback = () => {
+            this.enterText.destroy();
+            console.log('leave now');
+            this.input.keyboard.removeAllListeners('keydown_E');
+        }
+        
+    }
+
     update() {
         this.player.update();
     }
@@ -136,6 +160,11 @@ export default class MainScene extends Phaser.Scene {
         // newUser.server.joinGame(newUser);
         this.users[user_id] = newUser;
 
+    }
+
+    enterSchool() {
+        // console.log('enter');
+        this.scene.start('HallwayScene');
     }
 
 }
