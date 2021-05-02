@@ -1,3 +1,5 @@
+// Class for communication with the server
+// This class is to be used by the player
 export default class Server {
     constructor(socket) {
         this.socket = socket;

@@ -1,59 +1,66 @@
+// Imports
 const express = require('express');
 const app = express();
-
 const server = require('http').createServer(app);
-const port = process.env.PORT || 3000;
-
 const io = require('socket.io')(server);
 
 const path = require('path');
 
+const id = require('shortid');
+const formatMessage = require("./client/helpers/messages");
+
+
+// Server variables
+const port = process.env.PORT || 3000;
+const botName = "KlepetkoBot";
+let users = {};
+let ids = {}
+
+
+// Server setup
 app.use(express.static(path.join(__dirname, '/client')));
 
-const id = require('shortid');
 
-// let sockets = [];
-let users = {};
-let ids = {} // User IDs stored under socket IDs
-// let playerID;
-
-const formatMessage = require("./client/messages");
-const botName = "KlepetkoBot";
-
+// Socket.io events
 io.on('connection', (socket) => {
-    console.log('A user connected.');
 
+    // Server announcer
+    console.log('User connected with id:', socket.id);
+
+
+    // Disconnection
     socket.on('disconnect', () => {
-        // socket.emit('disconnectPlayer');
-        // socket.on('disconnectPlayer', data => {
-        //     console.log(data);
-        // });
 
-        console.log('A user disconnected.');
+        // Server announcer
+        console.log('User disconnected.', socket.id, 'deleted from cache.');
+
+        // Chat announcer
         if(users[ids[socket.id]]) {
             io.emit("message", formatMessage(botName, `Oseba ${users[ids[socket.id]].name} je zapustila igro.`));
         }
         
-        // delete sockets[playerID];
+        // Delete user reference
         delete users[ids[socket.id]];
-        // console.log(playerID);
+        // Notify all, that user has disconnected
         socket.broadcast.emit('disconnected', ids[socket.id]);
+        // Delete id reference
         delete ids[socket.id];
+
     });
 
+
+    // Register
     socket.on('register', (user) => {
+
+        // Generate id for a new user
         let user_id = id.generate();
-        // sockets[user_id] = socket;
+
+        // Store user and id
         users[user_id] = user;
         ids[socket.id] = user_id;
-        console.log(ids);
-        // playerID = user_id;
 
-        // Send player id
+        // Return id to player
         socket.emit('registerPlayer', user_id);
-
-        // socket.broadcast.emit('register', user, user_id);
-        console.log(user);
 
         // Spawn other users in your client
         for (let id in users) {
@@ -65,44 +72,39 @@ io.on('connection', (socket) => {
         // Spawn your player in other clients
         socket.broadcast.emit('spawnUser', user, user_id);
 
-        socket.emit('message', formatMessage(botName, "Dobrodošli v klepetku!"));
-        // broadcast when a user connects
+        // Message announcer for connection
+        socket.emit('message', formatMessage(botName, 'Dobrodošli v klepetku!'));
         socket.broadcast.emit('message', formatMessage(botName, `Oseba ${user.name} je prišla na dvorišče.`));
+
     });
 
 
-    // socket.on('joinGame', (user) => {
-    //     console.log('User joined: ', user);
-
-    // });
-
+    // Update player position
     socket.on('playerPosition', (user_id, userVelocity, x, y) => {
-        // console.log('Player is located at:', x, y);
 
+        // Store user coordinates
         if (users[user_id]) {
             users[user_id].x = x;
             users[user_id].y = y;
-            // console.log(x, y);
         }
 
-
+        // Send player position to other clients
         socket.broadcast.emit('updatePosition', user_id, userVelocity, x, y);
+
     });
 
-    // Listen for chatMessage
+    // Chat message
     socket.on("chatMessage", (user_id, msg) => {
+
+        // Send message to all clients
         io.emit("message", formatMessage(users[user_id].name, msg, user_id));
+
     });
 
 });
 
-// setInterval(() => {
-//     for(let i in sockets) {
-//         let socket = sockets[i];
-//         socket.emit('updatePosition', user);
-//     }
-// }, 1000 / 25)
 
+// Start server
 server.listen(port, () => {
-    console.log('listening on port', port);
+    console.log('Server started on port ', port);
 });

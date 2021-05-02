@@ -2,13 +2,20 @@ import Server from './Server.js';
 
 export default class Player extends Phaser.Physics.Matter.Sprite {
     constructor(data, socket, id, username) {
+
+        // Create and display player
         let { scene, x, y, texture, frame } = data;
         let options = { label: username };
         super(scene.matter.world, x, y, texture, frame, options);
         this.scene.add.existing(this);
+
+        // Attach the Server class
         this.server = new Server(socket);
+        // Set player id
         this.id = id;
-        this.username = this.scene.add.text(x, y - 50, username).setOrigin(0.5, 0.5);
+        // Display & set username
+        this.displayUsername(username);
+
     }
 
     static preload(scene) {
@@ -16,21 +23,24 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         scene.load.animation('player_anim', 'assets/character/player_anim.json');
     }
 
+    // Getter for velocity (used in movement)
     get velocity() {
         return this.body.velocity;
     }
 
     update() {
-        this.username.y = this.y - 50;
-        this.username.x = this.x;
 
-        if (this.bubble && this.bubbleContent) {
-            this.bubble.x = this.x;
-            this.bubble.y = this.y - 100;
-            this.bubbleContent.x = this.x + 10;
-            this.bubbleContent.y = this.y - 100;
+        // Update username position
+        if(this.username) {
+            this.updateUsername();
         }
 
+        // Update speech bubble position
+        if(this.bubble && this.bubbleContent) {
+            this.updateSpeechBubble();
+        }
+
+        // Movement variables and fucntions
         const speed = 2.5;
         let playerVelocity = new Phaser.Math.Vector2();
 
@@ -50,7 +60,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         playerVelocity.scale(speed);
         this.setVelocity(playerVelocity.x, playerVelocity.y);
 
-        // Popravi/Dodaj animacijo v vse 4 smeri
+        // Movement animations (DODAJ V VSE 4 SMERI!)
         if (Math.abs(this.velocity.x) > 0.1 || Math.abs(this.velocity.y) > 0.1) {
             this.anims.play('player_walk', true);
         } else {
@@ -59,12 +69,45 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 
         // Send data to server
         this.server.playerPosition(this.id, playerVelocity, this.x, this.y);
+
     }
 
+    updateUser(user, userVelocity, x, y) {
+        // user.setVelocity(userVelocity.x, userVelocity.y);
+        user.x = x;
+        user.y = y;
+        if(user.username) {
+            user.username.y = y - 50;
+            user.username.x = x;
+        }
+        if (user.bubble && user.bubbleContent) {
+            user.bubble.x = user.x;
+            user.bubble.y = user.y - 100;
+            user.bubbleContent.x = user.x + 10;
+            user.bubbleContent.y = user.y - 100;
+        }
+    }
+
+    // Remove user from game
     remove() {
+        if(this.bubble) {
+            this.bubble.destroy();
+            this.bubbleContent.destroy();
+        }
+        this.username.destroy();
         this.destroy();
     }
 
+    // Display username above the player
+    displayUsername(username) {
+        this.username = this.scene.add.text(this.x, this.y - 50, username).setOrigin(0.5, 0.5);
+    }
+
+    // Update username position
+    updateUsername() {
+        this.username.y = this.y - 50;
+        this.username.x = this.x;
+    }
 
     // Začasna funkcija za oblačke texta
     createSpeechBubble(x, y, width, height, quote) {
@@ -119,5 +162,14 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         this.bubbleContent.setPosition(this.bubble.x + (bubbleWidth / 2) - (b.width / 2), this.bubble.y + (bubbleHeight / 2) - (b.height / 2));
     }
 
+    // Update speech bubble position
+    updateSpeechBubble() {
+        if (this.bubble && this.bubbleContent) {
+            this.bubble.x = this.x;
+            this.bubble.y = this.y - 100;
+            this.bubbleContent.x = this.x + 10;
+            this.bubbleContent.y = this.y - 100;
+        }
+    }
 
 }
