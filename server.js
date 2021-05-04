@@ -7,14 +7,21 @@ const io = require('socket.io')(server);
 const path = require('path');
 
 const id = require('shortid');
+const { DefaultDeserializer } = require('v8');
 const formatMessage = require("./client/helpers/messages");
+const instance = require("./client/helpers/instance");
 
 
 // Server variables
 const port = process.env.PORT || 3000;
 const botName = "KlepetkoBot";
 let users = {};
-let ids = {}
+let ids = {};
+let rooms = {
+    r1: [0, 0, 0, 0, 0],
+    r2: [0, 0, 0, 0, 0]
+};
+let maxPlayersInRoom = 10;
 
 
 // Server setup
@@ -38,7 +45,11 @@ io.on('connection', (socket) => {
         if(users[ids[socket.id]]) {
             io.emit("message", formatMessage(botName, `Oseba ${users[ids[socket.id]].name} je zapustila igro.`));
         }
-        
+
+        // Free space in instance
+        if(users[ids[socket.id]]) {
+            freeInstanceSpace(users[ids[socket.id]].room);
+        }
         // Delete user reference
         delete users[ids[socket.id]];
         // Notify all, that user has disconnected
@@ -50,27 +61,33 @@ io.on('connection', (socket) => {
 
 
     // Register
-    socket.on('register', (user) => {
+    socket.on('register', (user, room) => {
 
         // Generate id for a new user
         let user_id = id.generate();
 
-        // Store user and id
+        // Store user, id and room/instance
         users[user_id] = user;
         ids[socket.id] = user_id;
+        users[user_id].room = room;
+
+        setInstance(Number(room.id), user_id);
+
+        console.log(users[user_id]);
 
         // Return id to player
-        socket.emit('registerPlayer', user_id);
+        socket.emit('registerPlayer', user_id, users[user_id].room.instance);
 
         // Spawn other users in your client
         for (let id in users) {
-            if (id != user_id) {
+            console.log(users);
+            if (id != user_id && users[id].room.id == users[user_id].room.id && users[id].room.instance == users[user_id].room.instance) {
                 socket.emit('spawnUser', users[id], id);
             }
         };
 
         // Spawn your player in other clients
-        socket.broadcast.emit('spawnUser', user, user_id);
+        socket.broadcast.emit('spawnUser', users[user_id], user_id);
 
         // Message announcer for connection
         socket.emit('message', formatMessage(botName, 'Dobrodošli v klepetku!'));
@@ -103,8 +120,47 @@ io.on('connection', (socket) => {
 
 });
 
+const setInstance = (id, user_id) => {
+    switch(id) {
+        case 1: {
+            for(let i = 0; i < rooms.r1.length; i++) {
+                if(rooms.r1[i] < maxPlayersInRoom) {
+                    users[user_id].room.instance = i;
+                    rooms.r1[i]++;
+                    break;
+                }
+            }
+            break;
+        }
+        case 2: {
+            for(let i = 0; i < rooms.r2.length; i++) {
+                if(rooms.r2[i] < maxPlayersInRoom) {
+                    users[user_id].room.instance = i;
+                    rooms.r2[i]++;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+}
+
+async function freeInstanceSpace (room) {
+    console.log(room);
+    switch(Number(room.id)) {
+        case 1: {
+            rooms.r1[room.instance]--;
+            break;
+        }
+        case 2: {
+            rooms.r2[room.instance]--;
+            break;
+        }
+    }
+}
+
 
 // Start server
 server.listen(port, () => {
-    console.log('Server started on port ', port);
+    console.log('Server started on port', port);
 });

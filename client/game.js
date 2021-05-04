@@ -1,5 +1,7 @@
 import LoginScene from './scenes/LoginScene.js';
 import MainScene from './scenes/MainScene.js'
+import HallwayScene from './scenes/HallwayScene.js'
+
 
 var config = {
     type: Phaser.AUTO,
@@ -26,7 +28,7 @@ var config = {
             }
         ]
     },
-    scene: [LoginScene, MainScene]
+    scene: [LoginScene, MainScene, HallwayScene]
 };
 
 var game = new Phaser.Game(config);
