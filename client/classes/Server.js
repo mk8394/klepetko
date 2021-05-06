@@ -1,5 +1,6 @@
 // Class for communication with the server
 // This class is to be used by the player
+
 export default class Server {
     constructor(socket) {
         this.socket = socket;
@@ -15,5 +16,9 @@ export default class Server {
 
     playerPosition(id, playerVelocity, x, y) {
         this.socket.emit('playerPosition', id, playerVelocity, x, y);
+    }
+
+    changeRoom(id, newRoom) {
+        this.socket.emit('changeRoom', id, newRoom);
     }
 }

@@ -1,7 +1,7 @@
 import Server from './Server.js';
 
 export default class Player extends Phaser.Physics.Matter.Sprite {
-    constructor(data, socket, id, username, room) {
+    constructor(data, socket, id, username) {
 
         // Create and display player
         let { scene, x, y, texture, frame } = data;
@@ -24,22 +24,15 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
             parts: [playerCollider, playerSensor]
         });
         this.setExistingBody(compoundBody);
-
-        // Room / Scene ID, to identify in which room the player is
-        // Room instance (a room is only allowed a certain number of players)
-        if(room) {
-            this.room = {
-                id: room.id,
-                instance: room.instance
-            }
-        }
         
+        this.socket = socket;
+        this.usernameText = username;
 
     }
 
     static preload(scene) {
-        scene.load.atlas('player', 'assets/character/player.png', 'assets/character/player_atlas.json');
-        scene.load.animation('player_anim', 'assets/character/player_anim.json');
+        scene.load.atlas('player', '../assets/character/player.png', '../assets/character/player_atlas.json');
+        scene.load.animation('player_anim', '../assets/character/player_anim.json');
     }
 
     // Getter for velocity (used in movement)
@@ -93,8 +86,10 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 
     updateUser(user, userVelocity, x, y) {
         // user.setVelocity(userVelocity.x, userVelocity.y);
-        user.x = x;
-        user.y = y;
+        if(user) {
+            user.x = x;
+            user.y = y;
+        }
         if(user.username) {
             user.username.y = y - 50;
             user.username.x = x;

@@ -1,10 +1,16 @@
 import Player from './Player.js';
+import { socket } from '../scenes/MainScene.js';
 
 export default class Message {
-    constructor() {
+    constructor(scene) {
         this.chatForm = document.getElementById("chat-form");
         this.chatMessages = document.querySelector(".chat-messages");
         this.input = document.querySelector('#msg');
+
+        if(scene) {
+            this.scene = scene;
+            this.addEventListener();
+        }
     }
 
     // Output message to DOM
@@ -40,6 +46,24 @@ export default class Message {
 
     scrollToTop() {
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+    }
+
+    addEventListener() {
+        // Message send
+        this.chatForm.addEventListener("submit", e => {
+            e.preventDefault();
+
+            // Get message text
+            const msg = e.target.elements.msg.value;
+            console.log(this)
+            // Send message to server
+            socket.emit("chatMessage", this.scene.player.id, msg);
+
+            // Clear input
+            e.target.elements.msg.value = "";
+            // e.target.elements.msg.focus();
+            e.target.elements.msg.blur();
+        });
     }
 
 }
