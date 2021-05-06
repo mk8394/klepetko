@@ -132,7 +132,24 @@ export default class MainScene extends Phaser.Scene {
             console.log('leave now');
             this.input.keyboard.removeAllListeners('keydown_E');
         }
+
+
+        this.quizEnterance = this.matter.add.rectangle(0, 110, 100, 50, 0x000000, 1);
+        this.quizEnterance.isStatic = true;
+        this.quizEnteranceBorder = this.matter.add.rectangle(0, 110, 120, 70, 0x000000, 1);
+        this.quizEnteranceBorder.isStatic = true;
+
+        this.quizEnterance.onCollideCallback = () => {
+            this.enterText = this.add.text(0, 100, 'Pritisni E za poskus kviza');
+            console.log('smo v kvizu');
+            this.input.keyboard.on('keydown_E', ()=>this.enterQuiz(), this);
+        }
         
+        this.quizEnterance.onCollideEndCallback = () => {
+            this.enterText.destroy();
+            console.log('oddaljujem se od kviza');
+            this.input.keyboard.removeAllListeners('keydown_E');
+        }
     }
 
     update() {
@@ -165,6 +182,15 @@ export default class MainScene extends Phaser.Scene {
     enterSchool() {
         // console.log('enter');
         this.scene.start('HallwayScene');
+    }
+
+    enterQuiz() {
+        var chat = document.getElementById("chat");
+        chat.style.display = "none";
+        var game = document.getElementById("game");
+        game.style.display = "none";
+        var quiz = document.getElementById("quiz");
+        quiz.style.display = "block";
     }
 
 }

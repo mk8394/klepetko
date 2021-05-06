@@ -1,5 +1,5 @@
 import LoginScene from './scenes/LoginScene.js';
-import MainScene from './scenes/MainScene.js'
+import MainScene from './scenes/MainScene.js';
 
 var config = {
     type: Phaser.AUTO,
