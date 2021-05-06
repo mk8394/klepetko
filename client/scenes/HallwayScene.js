@@ -16,7 +16,7 @@ export default class MainScene extends Phaser.Scene {
     create() {
 
         // Display background image
-        // this.add.image(400, 451 / 2, 'hallway');
+        this.add.image(400, 451 / 2, 'hallway');
         this.add.text(0,0,'hallway');
 
     }

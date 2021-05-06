@@ -1,7 +1,7 @@
 import Server from './Server.js';
 
 export default class Player extends Phaser.Physics.Matter.Sprite {
-    constructor(data, socket, id, username) {
+    constructor(data, socket, id, username, room) {
 
         // Create and display player
         let { scene, x, y, texture, frame } = data;
@@ -24,6 +24,16 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
             parts: [playerCollider, playerSensor]
         });
         this.setExistingBody(compoundBody);
+
+        // Room / Scene ID, to identify in which room the player is
+        // Room instance (a room is only allowed a certain number of players)
+        if(room) {
+            this.room = {
+                id: room.id,
+                instance: room.instance
+            }
+        }
+        
 
     }
 

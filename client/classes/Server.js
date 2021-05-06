@@ -6,7 +6,7 @@ export default class Server {
     }
 
     register(user) {
-        this.socket.emit('register', user);
+        this.socket.emit('register', user, user.room);
     }
 
     joinGame(user) {

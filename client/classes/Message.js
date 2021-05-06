@@ -4,6 +4,7 @@ export default class Message {
     constructor() {
         this.chatForm = document.getElementById("chat-form");
         this.chatMessages = document.querySelector(".chat-messages");
+        this.input = document.querySelector('#msg');
     }
 
     // Output message to DOM
