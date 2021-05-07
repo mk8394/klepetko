@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.23.0/dist/phaser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/phaser-matter-collision-plugin"></script>
     <link rel="stylesheet" href="assets/chat.css">
+    <link rel="stylesheet" href="assets/quiz.css">
 </head>
 
 <body>
@@ -28,9 +29,32 @@
             </div>
         </div>
     </div>
+    <div id="quiz" style="display:none">
+        <div class="container">
+            <div id="question-container" class="hide">
+                <div id="upper-row">
+                    <div id="question">Question</div>
+                    <div id="score">Rezultat: 0/5</div>
+                </div>
+                <div id="answer-buttons" class="btn-grid">
+                    <button class="btn">Answer 1</button>
+                    <button class="btn">Answer 2</button>
+                    <button class="btn">Answer 3</button>
+                    <button class="btn">Answer 4</button>
+                </div>
+            </div>
+            <div class="controls">
+                <p id="main-text">Dobrodošli v kvizu iz matematike!<br>Kviz lahko poskusite s klikom na spodnji gumb</p>
+                <button id="start-btn" class="start-btn btn">Začni</button>
+                <button id="next-btn" class="next-btn btn hide">Naslednje vprašanje</button>
+                <button id="finish-btn" class="finish-btn btn hide">Končaj</button>
+            </div>
+        </div>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="game.js"></script>
+    <script defer src="quiz.js"></script>
 </body>
 
 </html>
