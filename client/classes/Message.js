@@ -27,14 +27,13 @@ export default class Message {
 
 
         if (user) {
-            user.createSpeechBubble(user.x, user.y - 100, 100, 50, message.text);
-
+            user.createSpeechBubble(user.x, user.y - 100, 180, 50, message.text);
             // Reset time to live
             user.scene.time.removeAllEvents();
 
             // Time to live for this.player.bubble
             user.scene.time.addEvent({
-                delay: 3000,
+                delay: 5000,
                 callback: () => {
                     user.bubbleContent.destroy();
                     user.bubble.destroy();

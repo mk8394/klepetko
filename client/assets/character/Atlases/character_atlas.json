@@ -1,0 +1,424 @@
+{
+    "frames": [
+        {
+            "filename": "character_behind1",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 0,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_behind2",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 118,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_behind3",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 0,
+                "y": 133
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_behind4",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 118,
+                "y": 133
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_behind5",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 236,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_behind6",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 236,
+                "y": 133
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_front_",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 0,
+                "y": 266
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_front__2",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 118,
+                "y": 266
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_front__1",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 236,
+                "y": 266
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_front__3",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 354,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_front__4",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 354,
+                "y": 133
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_front",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 354,
+                "y": 266
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_idle_back",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 0,
+                "y": 399
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_idle_front",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 118,
+                "y": 399
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_idle_side_d",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 236,
+                "y": 399
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_idle_side_l",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 354,
+                "y": 399
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_d1_",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 472,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_d2",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 472,
+                "y": 133
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_d3_",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 472,
+                "y": 266
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_d4_",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 472,
+                "y": 399
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_d5",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 0,
+                "y": 532
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_d6_",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 118,
+                "y": 532
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_d7_",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 236,
+                "y": 532
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_d8",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 354,
+                "y": 532
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_l1",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 472,
+                "y": 532
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_l2",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 590,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_l3",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 590,
+                "y": 133
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_l4",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 590,
+                "y": 266
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_l5",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 590,
+                "y": 399
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_l6",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 590,
+                "y": 532
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_l7",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 0,
+                "y": 665
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "character_side_l8",
+            "frame": {
+                "w": 118,
+                "h": 133,
+                "x": 118,
+                "y": 665
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Gamma V2",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}

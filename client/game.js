@@ -1,12 +1,14 @@
 import LoginScene from './scenes/LoginScene.js';
 import MainScene from './scenes/MainScene.js'
 import HallwayScene from './scenes/HallwayScene.js'
+import ClassroomScene from './scenes/ClassroomScene.js';
+import LockerScene from './scenes/LockerScene.js';
 
 
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 451,
+    width: 1920,
+    height: 1080,
     parent: 'game', // Name of the parent DIV
     dom: {
         createContainer: true
@@ -28,7 +30,7 @@ var config = {
             }
         ]
     },
-    scene: [LoginScene, MainScene, HallwayScene]
+    scene: [LoginScene, MainScene, HallwayScene, ClassroomScene, LockerScene]
 };
 
 var game = new Phaser.Game(config);

@@ -18,7 +18,9 @@ let users = {};
 let ids = {};
 const rooms = {
     r1: [0, 0, 0, 0, 0],
-    r2: [0, 0, 0, 0, 0]
+    r2: [0, 0, 0, 0, 0],
+    r3: [0, 0, 0, 0, 0],
+    r4: [0, 0, 0, 0, 0]
 }
 let maxPlayersInRoom = 3;
 
@@ -97,12 +99,9 @@ io.on('connection', (socket) => {
 
     // Update player position
     socket.on('playerPosition', (user_id, userVelocity, x, y) => {
-
-        console.log('getting data');
-        console.log(user_id);
+        
         // Store user coordinates
         if (users[user_id]) {
-            console.log(users[user_id].x = x, users[user_id].y = y);
             users[user_id].x = x;
             users[user_id].y = y;
 
@@ -153,6 +152,26 @@ const getRoomName = (id) => {
             }
             break;
         }
+        case 3: {
+            for (let i = 0; i < rooms.r3.length; i++) {
+                if (rooms.r3[i] < maxPlayersInRoom) {
+                    roomName = `${id}-${i}`;
+                    rooms.r3[i]++;
+                    break;
+                }
+            }
+            break;
+        }
+        case 4: {
+            for (let i = 0; i < rooms.r4.length; i++) {
+                if (rooms.r4[i] < maxPlayersInRoom) {
+                    roomName = `${id}-${i}`;
+                    rooms.r4[i]++;
+                    break;
+                }
+            }
+            break;
+        }
     }
     console.log('promise');
     return roomName;
@@ -193,6 +212,14 @@ const leaveRoom = (socket, roomName) => {
         }
         case 2: {
             rooms.r2[roomIns]--;
+            break;
+        }
+        case 3: {
+            rooms.r3[roomIns]--;
+            break;
+        }
+        case 4: {
+            rooms.r4[roomIns]--;
             break;
         }
     }

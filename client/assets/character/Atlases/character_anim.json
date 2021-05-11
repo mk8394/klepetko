@@ -1,0 +1,196 @@
+{
+    "anims": [
+        {
+            "key": "walk_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "character_side_d8"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_d7_"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_d6_"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_d5"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_d4_"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_d3_"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_d2"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_d1_"
+                }
+            ]
+        },
+        {
+            "key": "idle_back",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "character_behind1"
+                }
+            ]
+        },
+        {
+            "key": "idle_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "character_idle_side_l"
+                }
+            ]
+        },
+        {
+            "key": "idle_right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "character_idle_side_d"
+                }
+            ]
+        },
+        {
+            "key": "idle_front",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "character_front_"
+                }
+            ]
+        },
+        {
+            "key": "walk_left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "character_side_l8"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_l7"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_l6"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_l5"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_l4"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_l3"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_l2"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_side_l1"
+                }
+            ]
+        },
+        {
+            "key": "walk_back",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "character_behind5"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_behind6"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_behind1"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_behind3"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_behind2"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_behind1"
+                }
+            ]
+        },
+        {
+            "key": "walk_front",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "character",
+                    "frame": "character_front__1"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_front"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_front_"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_front__3"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_front__4"
+                },
+                {
+                    "key": "character",
+                    "frame": "character_front_"
+                }
+            ]
+        }
+    ]
+}

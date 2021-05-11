@@ -3,12 +3,18 @@ import Player from '../classes/Player.js';
 import { socket } from '../scenes/MainScene.js';
 import { removeSocketEvents } from './socketEvents.js';
 
+export const gameData = {
+    width: 1920,
+    height: 1080
+}
 export let playerData = {id: null};
 export const users = {};
 let registered = false;
 const scenes = [
     'MainScene',
-    'HallwayScene'
+    'HallwayScene',
+    'ClassroomScene',
+    'LockerScene'
 ];
 
 export const message = (scene) => {
@@ -22,8 +28,8 @@ export const spawnPlayer = (scene) => {
         scene: scene,
         x: 400,
         y: 300,
-        texture: 'player',
-        frame: '3',
+        texture: 'character',
+        frame: 'character_front_',
     }, socket, playerData.id, scene.playerName);
 
     scene.player.inputKeys = scene.input.keyboard.addKeys({
@@ -52,6 +58,9 @@ export const spawnPlayer = (scene) => {
     // Create collision events
     scene.createCollisionEvents();
 
+    // Create hitboxes
+    scene.createHitboxes();
+
     // Enable messages
     scene.message = message(scene);
 }
@@ -62,8 +71,8 @@ export const spawnOtherUser = (user, user_id, scene) => {
         scene: scene,
         x: user.x,
         y: user.y,
-        texture: 'player',
-        frame: '3'
+        texture: 'character',
+        frame: 'character_front_'
     }, socket, user_id, user.name);
 
     // Prevent rotation
@@ -89,8 +98,27 @@ export const changeRoom = (leave, enter, scene) => {
     console.log('ready to leave', users);
     // scene.player.server.changeRoom(playerData.id, 2);
     removeSocketEvents();
+    delete scene.message;
     scene.scene.start(scenes[num], {player: scene.player});
+    console.log(scene)
     // scene.player.username.destroy();
     // scene.player.destroy();
     // delete scene.message;
+}
+
+export const preloadHUD = (scene) => {
+    scene.load.image('HUD', '../assets/HUD/Background.png');
+    scene.load.image('EnterText', '../assets/HUD/EnterText.png');
+    scene.load.image('ExitText', '../assets/HUD/ExitText.png');
+}
+
+export const createHUD = (scene) => {
+    scene.add.image(gameData.width/2, gameData.height/2, 'HUD');
+}
+
+export const setBounds = (scene) => {
+    scene.matter.add.rectangle(gameData.width/2, 0, 1920, 200, 0xff0000, 1).isStatic = true;
+    scene.matter.add.rectangle(gameData.width/2, gameData.height, 1920, 200, 0xff0000, 1).isStatic = true;
+    scene.matter.add.rectangle(0, gameData.height/2, 50, 1080, 0xff0000, 1).isStatic = true;
+    scene.matter.add.rectangle(gameData.width, gameData.height/2, 50, 1080, 0xff0000, 1).isStatic = true;
 }

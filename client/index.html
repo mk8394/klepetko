@@ -6,10 +6,15 @@
     <script src="https://cdn.jsdelivr.net/npm/phaser-matter-collision-plugin"></script>
     <link rel="stylesheet" href="assets/chat.css">
     <link rel="stylesheet" href="assets/quiz.css">
+    <link rel="stylesheet" href="assets/login.css">
 </head>
 
 <body>
-    <div id="game"></div>
+    <div id="game" height="1080" width="1920">
+        <div id="login_wrapper" height="1080" width="1920">
+            <input id="username_input" type="text" name="login" placeholder="" autocomplete="off" maxlength="6">
+        </div>
+    </div>
 
     <div id="chat" style="display: none;">
         <div class="chat-container">
