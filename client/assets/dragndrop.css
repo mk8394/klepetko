@@ -1,0 +1,120 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }  
+
+  #dragndrop {
+    background-image: linear-gradient(to bottom right, #a458a3, #7658a5);
+    padding: 0;
+    margin: 0;
+    width: 98vw;
+    height: 95vh;
+  }
+
+  .dnd-draggables-grid{
+    display: grid;
+    position: absolute;
+    top: 250px;
+    right: 250px;
+    grid-template-columns: repeat(2, 200px);
+  }
+
+  .dnd-draggable {
+    border-radius: 50px;
+    background-color: #f1eb49;
+    color: #7658a5;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    padding-top: 22px;
+    font-family: 'quicksand';
+    cursor: move;
+    border: none;
+  }
+
+  .dnd-question-grid{
+    display: grid;
+    position: absolute;
+    top: 250px;
+    left: 250px;
+    grid-template-columns: repeat(2, 400px);
+  }
+
+  .dnd-question {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    color: #7658a5;
+    font-size: 40px;
+    padding: 26px;
+    margin: 20px;
+    width: 300px;
+    border-radius: 50px;
+  }
+
+  .dnd-draggable.dragging {
+    opacity: 0.5;
+  }
+
+  .dnd-correct {
+    background-color: #75C165;
+    border-radius: 40px;
+    color: #7658a5;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    margin: 20px;
+    padding-top: 16px;
+    font-family: 'quicksand';
+    cursor: move;
+    border: none;
+  }
+
+  .dnd-wrong {
+    background-color: #ef474c;
+    border-radius: 40px;
+    color: #7658a5;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    margin: 20px;
+    padding-top: 16px;
+    font-family: 'quicksand';
+    cursor: move;
+    border: none;
+  }
+
+  .dnd-start-btn {
+    background: url(./Klepetko_IGRAJ_CTA_Začetni_Screen_ZAČNI-12.png);
+    background-repeat: no-repeat;
+    background-size: 300px;
+    position: absolute;
+    left: 42%;
+    top: 55%;
+    width: 425px;
+    height: 131px;
+    border: none;
+  }
+
+  .dnd-start-btn:hover {
+    cursor: pointer;
+  }
+
+  .dnd-finish-btn {
+    background: none;
+    color: #f1eb49;
+    border: 2px solid #f1eb49;
+    border-radius: 30px;
+    font-size: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 20px;
+  }
+
+  

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="assets/chat.css">
     <link rel="stylesheet" href="assets/quiz.css">
     <link rel="stylesheet" href="assets/login.css">
+    <link rel="stylesheet" href="assets/dragndrop.css">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
 </head>
 
 <body>
@@ -34,25 +36,83 @@
             </div>
         </div>
     </div>
-    <div id="quiz" style="display:none">
-        <div class="container">
-            <div id="question-container" class="hide">
-                <div id="upper-row">
-                    <div id="question">Question</div>
-                    <div id="score">Rezultat: 0/5</div>
+
+    <div id="quiz" style="display: none;">
+        <img id="emote" src="assets/ang-emote.png" style="position: absolute; left: 800px; top: 70px; width: 75px">
+        <div id="header">
+            <div id="quiz-scorediv" class="header-element">
+                <h2 id="quiz-score">Rezultat: 0/2</h2>
+            </div>
+            <div id="type" class="header-element" style="margin-right: 170px;">
+                <h2>ANGLEŠČINA</h2>
+            </div>
+            <button id="quiz-exit-btn" class="header-element btn"
+                style="font-size: 20px; padding-right: 20px; padding-left: 20px;">
+                X
+            </button>
+        </div>
+        <div id="quiz-main-container" class="quiz-container">
+            <div id="quiz-question-container" class="hide">
+                <div id="quiz-answer-buttons" class="quiz-btn-grid">
+                    <button class="quiz-answer-button btn">Answer 1</button>
+                    <button class="quiz-answer-button btn">Answer 2</button>
+                    <button class="quiz-answer-button btn">Answer 3</button>
+                    <button class="quiz-answer-button btn">Answer 4</button>
                 </div>
-                <div id="answer-buttons" class="btn-grid">
-                    <button class="btn">Answer 1</button>
-                    <button class="btn">Answer 2</button>
-                    <button class="btn">Answer 3</button>
-                    <button class="btn">Answer 4</button>
+                <div id="quiz-photo" class="quiz-photo">
                 </div>
             </div>
-            <div class="controls">
-                <p id="main-text">Dobrodošli v kvizu iz matematike!<br>Kviz lahko poskusite s klikom na spodnji gumb</p>
-                <button id="start-btn" class="start-btn btn">Začni</button>
-                <button id="next-btn" class="next-btn btn hide">Naslednje vprašanje</button>
-                <button id="finish-btn" class="finish-btn btn hide">Končaj</button>
+            <div class="quiz-controls" style="text-align: center;">
+                <div id="quiz-main-text">
+                    <p class="yellow-text" style="font-weight: 800;">Dobrodošli v kvizu iz Angleščine</p>
+                    <p class="yellow-text" style="font-size: 30px; margin-top: 30px">Označi ustrezno besedo, ki
+                        prikazuje predmet na sliki</p>
+                </div>
+                <p id="quiz-response" class="yellow-text hide" style="font-size: 40px;"></p>
+                <button id="quiz-start-btn" class="quiz-start-btn"></button>
+                <button id="quiz-next-btn" class="quiz-next-btn btn hide">Naslednje vprašanje</button>
+                <button id="quiz-finish-btn" class="quiz-finish-btn btn hide">Izhod</button>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dragndrop" style="display: none;"> 
+        <img id="emote" src="assets/mat-emote.png" style="position: absolute; left: 810px; top: 65px; width: 75px">
+        <div id="header">
+            <div id="scorediv" class="header-element">
+                <h2 id="dnd-score">Rezultat: 0/6</h2>
+            </div>
+            <div id="type" class="header-element" style="margin-right: 170px;">
+                <h2>MATEMATIKA</h2>
+            </div>
+            <button id="dnd-exit-btn" class="header-element btn"
+                style="font-size: 20px; padding-right: 20px; padding-left: 20px;">
+                X
+            </button>
+        </div>
+        <div id="dnd-main-container" class="dnd-container">
+            <div id="dnd-question-container" class="hide">
+                <div id="dnd-draggables" class="dnd-draggables-grid">
+                    <p class="dnd-draggable" draggable="true">9</p>
+                    <p class="dnd-draggable" draggable="true">11</p>
+                    <p class="dnd-draggable" draggable="true">8</p>
+                    <p class="dnd-draggable" draggable="true">7</p>
+                    <p class="dnd-draggable" draggable="true">10</p>
+                    <p class="dnd-draggable" draggable="true">13</p>
+                </div>
+                <div id="dnd-question" class="dnd-question-grid">
+                </div>
+            </div>
+            <div class="dnd-controls" style="text-align: center;">
+                <div id="dnd-main-text">
+                    <p class="yellow-text" style="font-weight: 800;">Dobrodošli v kvizu iz Matematike</p>
+                    <p class="yellow-text" style="font-size: 30px; margin-top: 30px">Ustrezno povežite rezultate z danimi računi</p>
+                </div>
+                <p id="dnd-response" class="yellow-text hide" style="font-size: 40px;"></p>
+                <button id="dnd-start-btn" class="dnd-start-btn"></button>
+                <button id="dnd-finish-btn" class="dnd-finish-btn btn hide">Izhod</button>
+                </button>
             </div>
         </div>
     </div>
@@ -60,6 +120,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="game.js"></script>
     <script defer src="quiz.js"></script>
+    <script defer src="dragndrop.js"></script>
 </body>
 
 </html>

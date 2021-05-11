@@ -1,16 +1,19 @@
-const startButton = document.getElementById('start-btn')
-const nextButton = document.getElementById('next-btn')
-const finishButton = document.getElementById('finish-btn')
-const questionContainerElement = document.getElementById('question-container')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
+const startButton = document.getElementById('quiz-start-btn')
+const nextButton = document.getElementById('quiz-next-btn')
+const finishButton = document.getElementById('quiz-finish-btn')
+const exitButton = document.getElementById('quiz-exit-btn')
+const questionContainerElement = document.getElementById('quiz-question-container')
+const answerButtonsElement = document.getElementById('quiz-answer-buttons')
 const quizContainer = document.getElementById('quiz')
+const photoElement = document.getElementById('quiz-photo')
+const score = document.getElementById('quiz-score')
+const mainText = document.getElementById('quiz-main-text')
+const response = document.getElementById("quiz-response")
 const game = document.getElementById('game')
 const chat = document.getElementById('chat')
-const score = document.getElementById('score')
-const mainText = document.getElementById('main-text')
 
 let shuffledQuestions, currentQuestionIndex
+let quizCorrectAnswers = 0
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -18,19 +21,23 @@ nextButton.addEventListener('click', () => {
     setNextQuestion()
 })
 
+exitButton.addEventListener('click', () => {
+    finishGame();
+})
+
 function intro() {
     startButton.classList.remove('hide')
     finishButton.classList.add('hide')
     questionContainerElement.classList.add('hide')
     startButton.addEventListener('click', startGame)
+    mainText.classList.remove('hide')
 }
 
 function startGame() {
     startButton.classList.add('hide')
     mainText.classList.add('hide')
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    shuffledQuestions = quizQuestions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
-    correctAnswers = 0
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
 }
@@ -41,22 +48,23 @@ function setNextQuestion() {
 }
 
 function showQuestion(question) {
-    questionElement.innerText = question.question
+    photoElement.innerHTML = `<img src="${question.photo}">`
     question.answers.forEach(answer => {
         const button = document.createElement('button')
         button.innerText = answer.text
         button.classList.add('btn')
+        button.classList.add('quiz-answer-button')
         if (answer.correct) {
             button.dataset.correct = answer.correct
-        }
+        }  
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
     })
 }
 
 function resetState() {
-    clearStatusClass(document.body)
     nextButton.classList.add('hide')
+    response.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
@@ -66,18 +74,25 @@ function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     if (correct) {
-        selectedButton.classList.add('correct')
-        correctAnswers++
-        score.innerHTML = `Rezultat: ${correctAnswers}/5`
+        selectedButton.style.color = "#f1eb49"
+        selectedButton.style.backgroundColor = "#75C165"
+        selectedButton.style.border = "2px solid #f1eb49"
+        response.classList.remove("hide");
+        quizCorrectAnswers++
+        score.innerHTML = `Rezultat: ${quizCorrectAnswers}/2`
+        response.innerHTML = "Pravilen odgovor!"
     } else {
-        selectedButton.classList.add('wrong')
+        selectedButton.style.color = "#f1eb49"
+        selectedButton.style.backgroundColor = "#ef474c"
+        selectedButton.style.border = "2px solid #f1eb49"
+        response.classList.remove("hide");
+        response.innerHTML = "Žal si izbral napačen odgovor :("
     }
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     } else {
-        mainText.classList.remove('hide')
-        if(correctAnswers > 1) mainText.innerHTML = `Čestitke!<br>Vaš rezultat: ${correctAnswers}/5!`
-        else mainText.innerHTML = `Žal niste odgovorili na nobeno vprašanje pravilno!`
+        if(quizCorrectAnswers > 0) response.innerHTML = `Čestitke!<br>Vaš rezultat: ${quizCorrectAnswers}/2!`
+        else response.innerHTML = `Žal nisi odgovorili na nobeno vprašanje pravilno :(`
         finishButton.classList.remove('hide')
         finishButton.addEventListener('click', finishGame)
     }
@@ -94,31 +109,33 @@ function clearStatusClass(element) {
 function finishGame() {
     resetState();
     intro();
-    mainText.innerHTML = "Dobrodošli v kvizu iz matematike!<br>Kviz lahko poskusite s klikom na spodnji gumb"
+    score.innerHTML = `Rezultat: 0/2`
+    quizCorrectAnswers = 0
     quizContainer.style.display = 'none';
     chat.style.display = 'block';
     game.style.display = 'block';
 }
 
-const questions = [
+const quizQuestions = [
     {
-        question: 'Koliko je 2 + 2?',
+        photo: "assets/Klepetko_Games_Jabolko-07.png",
         answers: [
-            { text: '4', correct: true },
-            { text: '5', correct: false },
-            { text: '3', correct: false },
-            { text: '2', correct: false }
+            { text: 'APPLE', correct: true },
+            { text: 'BANANA', correct: false },
+            { text: 'PEAR', correct: false },
+            { text: 'CAR', correct: false }
         ]
     },
     {
-        question: 'Koliko je 4 * 2?',
+        photo: 'assets/Klepetko_Games_Jabolko-07.png',
         answers: [
-            { text: '6', correct: false },
-            { text: '8', correct: true },
-            { text: '0', correct: false },
-            { text: '2', correct: false }
+            { text: 'APPLE', correct: true },
+            { text: 'BANANA', correct: false },
+            { text: 'PEAR', correct: false },
+            { text: 'CAR', correct: false }
         ]
-    },
+    }
+    /*
     {
         question: 'Koliko je 5 + 3?',
         answers: [
@@ -145,5 +162,5 @@ const questions = [
             { text: '100', correct: true },
             { text: '2', correct: false }
         ]
-    }
+    }*/
 ]
