@@ -19,11 +19,13 @@
   }
   
   #quiz {
+    position: absolute;
     background-image: linear-gradient(to bottom right, #ec4599, #ef474c);
     padding: 0;
     margin: 0;
-    width: 98vw;
-    height: 95vh;
+    width: 1920px;
+    height: 1080px;
+    z-index: 50;
   }
 
   .btn {

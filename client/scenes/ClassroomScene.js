@@ -124,19 +124,19 @@ export default class ClassroomScene extends Phaser.Scene {
     }
 
     enterQuiz() {
-        var chat = document.getElementById("chat");
-        chat.style.display = "none";
-        var game = document.getElementById("game");
-        game.style.display = "none";
+        // var chat = document.getElementById("chat");
+        // chat.style.display = "none";
+        // var game = document.getElementById("game");
+        // game.style.display = "none";
         var quiz = document.getElementById("quiz");
         quiz.style.display = "block";
     }
 
     enterdnd() {
-        var chat = document.getElementById("chat");
-        chat.style.display = "none";
-        var game = document.getElementById("game");
-        game.style.display = "none";
+        // var chat = document.getElementById("chat");
+        // chat.style.display = "none";
+        // var game = document.getElementById("game");
+        // game.style.display = "none";
         var dnd = document.getElementById("dragndrop");
         dnd.style.display = "block"; 
     }

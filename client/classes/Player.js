@@ -118,8 +118,8 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         }
 
         if(user.username) {
-            user.usernameBG.y = y - 80;
-            user.usernameBG.x = x;
+            // user.usernameBG.y = y - 80;
+            // user.usernameBG.x = x;
             user.username.y = y - 80;
             user.username.x = x;
         }
@@ -143,12 +143,14 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 
     // Display username above the player
     displayUsername(username) {
-        this.usernameBG = this.scene.add.image(this.x, this.y - 80, 'UsernameBG');
-        this.usernameBG.scale = 0.3;
+        // this.usernameBG = this.scene.add.image(this.x, this.y - 80, 'UsernameBG');
+        // this.usernameBG.scale = 0.3;
 
         this.username = this.scene.add.text(this.x, this.y - 80, username, {
             fontFamily: 'Klepetko',
-            fontSize: '20pt'
+            fontSize: '20pt',
+            strokeThickness: 2,
+            stroke: 'black'
         }).setOrigin(0.5, 0.5);
 
     }
@@ -156,9 +158,9 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     // Update username position
     updateUsername() {
         this.username.setColor('aquamarine');
-        this.usernameBG.y = this.y - 80;
-        this.usernameBG.x = this.x;
-        this.username.y = this.y - 80;
+        // this.usernameBG.y = this.y + 85;
+        // this.usernameBG.x = this.x;
+        this.username.y = this.y + 85;
         this.username.x = this.x;
     }
 

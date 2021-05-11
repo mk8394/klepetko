@@ -6,8 +6,9 @@
     background-image: linear-gradient(to bottom right, #a458a3, #7658a5);
     padding: 0;
     margin: 0;
-    width: 98vw;
-    height: 95vh;
+    width: 1920px;
+    height: 1080px;
+    z-index: 50;
   }
 
   .dnd-draggables-grid{
