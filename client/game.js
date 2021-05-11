@@ -16,7 +16,7 @@ var config = {
     physics: {
         default: 'matter',
         matter: {
-            debug: true,
+            debug: false,
             gravity: { y: 0 },
             setBounds: true
         }

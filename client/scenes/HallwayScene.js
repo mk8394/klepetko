@@ -78,7 +78,8 @@ export default class HallwayScene extends Phaser.Scene {
         this.classroomEnter.onCollideCallback = (pair) => {
             console.log('pair:',pair)
             if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.text(100, 50, 'Pritisni E za vstop v učilnico');
+                this.exitText = this.add.image(150, gameData.height/2-100, 'EnterText');
+                this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.enterClassroom(), this);
             }
         };
@@ -94,7 +95,8 @@ export default class HallwayScene extends Phaser.Scene {
         this.lockerEnter.onCollideCallback = (pair) => {
             console.log('pair:',pair)
             if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.text(100, 50, 'Pritisni E za vstop v garderobo');
+                this.exitText = this.add.image(gameData.width-150, gameData.height/2-100, 'EnterText');
+                this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.enterLocker(), this);
             }
         };

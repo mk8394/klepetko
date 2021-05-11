@@ -1,5 +1,6 @@
 import Player from './Player.js';
 import { socket } from '../scenes/MainScene.js';
+import { playerData, users } from '../helpers/clientData.js';
 
 export default class Message {
     constructor(scene) {
@@ -7,7 +8,7 @@ export default class Message {
         this.chatMessages = document.querySelector(".chat-messages");
         this.input = document.querySelector('#msg');
 
-        if(scene) {
+        if (scene) {
             this.scene = scene;
             this.addEventListener();
         }
@@ -27,18 +28,20 @@ export default class Message {
 
 
         if (user) {
-            user.createSpeechBubble(user.x, user.y - 100, 180, 50, message.text);
-            // Reset time to live
-            user.scene.time.removeAllEvents();
+            if (users[user.id]) {
+                user.createSpeechBubble(user.x, user.y - 100, 180, 50, message.text);
+                // Reset time to live
+                user.scene.time.removeAllEvents();
 
-            // Time to live for this.player.bubble
-            user.scene.time.addEvent({
-                delay: 5000,
-                callback: () => {
-                    user.bubbleContent.destroy();
-                    user.bubble.destroy();
-                }
-            });
+                // Time to live for this.player.bubble
+                user.scene.time.addEvent({
+                    delay: 5000,
+                    callback: () => {
+                        user.bubbleContent.destroy();
+                        user.bubble.destroy();
+                    }
+                });
+            }
         }
 
     }
@@ -56,7 +59,9 @@ export default class Message {
             const msg = e.target.elements.msg.value;
             console.log(this)
             // Send message to server
-            socket.emit("chatMessage", this.scene.player.id, msg);
+            if (this.scene.scene.key == playerData.scene) {
+                socket.emit("chatMessage", this.scene.player.id, msg);
+            }
 
             // Clear input
             e.target.elements.msg.value = "";

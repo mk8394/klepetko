@@ -7,7 +7,7 @@ export const gameData = {
     width: 1920,
     height: 1080
 }
-export let playerData = {id: null};
+
 export const users = {};
 let registered = false;
 const scenes = [
@@ -16,6 +16,7 @@ const scenes = [
     'ClassroomScene',
     'LockerScene'
 ];
+export let playerData = {id: null, scene: scenes[0]};
 
 export const message = (scene) => {
     let message = new Message(scene);
@@ -88,6 +89,7 @@ export const spawnOtherUser = (user, user_id, scene) => {
 }
 
 export const changeRoom = (leave, enter, scene) => {
+    
     let num = enter - 1;
     for(let i in users) {
         if(users[i] != users[playerData.id]) {
@@ -99,6 +101,7 @@ export const changeRoom = (leave, enter, scene) => {
     // scene.player.server.changeRoom(playerData.id, 2);
     removeSocketEvents();
     delete scene.message;
+    playerData.scene = scenes[num];
     scene.scene.start(scenes[num], {player: scene.player});
     console.log(scene)
     // scene.player.username.destroy();
@@ -108,12 +111,20 @@ export const changeRoom = (leave, enter, scene) => {
 
 export const preloadHUD = (scene) => {
     scene.load.image('HUD', '../assets/HUD/Background.png');
+    scene.load.image('Coins', '../assets/HUD/Coins.png');
+    scene.load.image('Profile', '../assets/HUD/Profile.png');
+    scene.load.image('Map', '../assets/HUD/Map.png');
     scene.load.image('EnterText', '../assets/HUD/EnterText.png');
     scene.load.image('ExitText', '../assets/HUD/ExitText.png');
+    scene.load.image('ANG', '../assets/HUD/ANG.png');
+    scene.load.image('MAT', '../assets/HUD/MAT.png');
 }
 
 export const createHUD = (scene) => {
     scene.add.image(gameData.width/2, gameData.height/2, 'HUD');
+    scene.add.image(1840, 1030, 'Map').scale = 0.28;
+    scene.add.image(260, 1030, 'Coins').scale = 0.28;
+    scene.add.image(80, 1030, 'Profile').scale = 0.28;
 }
 
 export const setBounds = (scene) => {
