@@ -4,81 +4,140 @@
   
   :root {
     --hue-neutral: 200;
-    --hue-wrong: 0;
-    --hue-correct: 145;
   }
-  
-  #quiz {
-    --hue: var(--hue-neutral);
-    padding: 0;
-    margin: 0;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+  .correct {
+    background-color: #75C165;
   }
-  
-  .container {
-    width: 800px;
-    max-width: 80%;
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 0 10px 2px;
+
+  .wrong {
+    background-color: #ef474c;
   }
-  
-  .btn-grid {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    margin: 20px 0;
-  }
-  
-  .btn {
-    --hue: var(--hue-neutral);
-    border: 1px solid hsl(var(--hue), 100%, 30%);
-    background-color: hsl(var(--hue), 100%, 50%);
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: white;
-    outline: none;
-  }
-  
-  .btn:hover {
-    border-color: black;
-  }
-  
-  .btn.correct {
-    --hue: var(--hue-correct);
-    color: black;
-  }
-  
-  .btn.wrong {
-    --hue: var(--hue-wrong);
-  }
-  
-  .start-btn, .next-btn, .finish-btn {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 10px 20px;
-    margin-top: 20px;
-  }
-  
-  .controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; 
-  }
-  
+
   .hide {
     display: none;
   }
+  
+  #quiz {
+    background-image: linear-gradient(to bottom right, #ec4599, #ef474c);
+    padding: 0;
+    margin: 0;
+    width: 98vw;
+    height: 95vh;
+  }
 
-  #upper-row {
+  .btn {
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    color: #EC4599;
+    background-color: #f1eb49;
+  }
+
+  
+  /* Upper row styling */
+  #header {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .header-element {
+    border: 2px solid #f1eb49;
+    border-radius: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    color: #f1eb49;
+    background: none;
+  }
+
+
+  /* Quiz styling */
+  .quiz-answer-button {
+    border-radius: 30px;
+    background-color: #f1eb49;
+    color: #EC4599;
+    font-size: 40px;
+    width: 300px;
+    height: 200px;
+    margin: 50px;
+  }
+
+  .quiz-answer-button:hover {
+    background: none;
+    color: #f1eb49;
+    border: 2px solid #f1eb49;
+    border-radius: 30px;
+  }
+
+  .quiz-answer-button:disabled {
+    background-color: #f1eb49;
+    color: #EC4599;
+    cursor: default;
+  }
+  
+  .quiz-btn-grid{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    margin-top: 40px;
+    padding-left: 1000px;
+    padding-right: 100px;
+  }
+
+  #quiz-photo {
+    position: fixed;
+    top: 188px;
+    left: 150px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+
+  }
+
+  .yellow-text {
+    margin-top: 200px;
+    text-align: center;
+    color: #f1eb49;
+    font-size: 60px;
+  }
+
+  .quiz-start-btn {
+    background: url(./Klepetko_IGRAJ_CTA_Začetni_Screen_ZAČNI-12.png);
+    background-repeat: no-repeat;
+    background-size: 300px;
+    position: absolute;
+    left: 42%;
+    top: 55%;
+    width: 425px;
+    height: 131px;
+    border: none;
+  }
+
+  .quiz-start-btn:hover {
+    cursor: pointer;
+  }
+
+  .quiz-next-btn, .quiz-finish-btn {
+    background: none;
+    color: #f1eb49;
+    border: 2px solid #f1eb49;
+    border-radius: 30px;
+    font-size: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 20px;
+  }
+
+  #quiz-response {
+    font-weight: 800;
+    text-align: center;
+    margin-top: 10px;
   }
