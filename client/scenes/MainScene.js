@@ -14,10 +14,16 @@ export default class MainScene extends Phaser.Scene {
     init(data) {
         // Get data from login
         if(data.username) {
-            console.log('there is data');
+            this.playerSpawn = {
+                x: gameData.width/2,
+                y: 700
+            }
             this.playerName = data.username;
         } else if(data.player) {
-            console.log('entering');
+            this.playerSpawn = {
+                x: gameData.width/2,
+                y: 350
+            }
             this.playerName = data.player.usernameText;
             data.player.server.changeRoom(playerData.id, 1);
         }
@@ -85,10 +91,7 @@ export default class MainScene extends Phaser.Scene {
     };
 
     enterSchool() {
-        console.log('before leave', users);
-
         changeRoom(1, 2, this);
-        
     }
 
 }

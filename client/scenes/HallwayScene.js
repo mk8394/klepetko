@@ -14,8 +14,22 @@ export default class HallwayScene extends Phaser.Scene {
     init(data) {
         this.playerName = data.player.usernameText;
         data.player.server.changeRoom(playerData.id, 2);
-        
-        // console.log(this.playerData);
+        if(data.prevRoom == 3) {
+            this.playerSpawn = {
+                x: 300,
+                y: gameData.height/2 - 100
+            }
+        } else if (data.prevRoom == 4) {
+            this.playerSpawn = {
+                x: 1620,
+                y: gameData.height/2 - 100
+            }
+        } else {
+            this.playerSpawn = {
+                x: gameData.width/2,
+                y: 700
+            }
+        }
     }
 
     preload() {
@@ -59,7 +73,6 @@ export default class HallwayScene extends Phaser.Scene {
 
         // Exit school
         this.schoolExit.onCollideCallback = (pair) => {
-            console.log('pair:',pair)
             if(pair.bodyB.gameObject.id == playerData.id) {
                 this.exitText = this.add.image(gameData.width/2, 950, 'ExitText');
                 this.exitText.scale = 0.3;
@@ -76,7 +89,6 @@ export default class HallwayScene extends Phaser.Scene {
 
         // Enter classroom
         this.classroomEnter.onCollideCallback = (pair) => {
-            console.log('pair:',pair)
             if(pair.bodyB.gameObject.id == playerData.id) {
                 this.exitText = this.add.image(150, gameData.height/2-100, 'EnterText');
                 this.exitText.scale = 0.3;
@@ -93,7 +105,6 @@ export default class HallwayScene extends Phaser.Scene {
 
         // Enter locker
         this.lockerEnter.onCollideCallback = (pair) => {
-            console.log('pair:',pair)
             if(pair.bodyB.gameObject.id == playerData.id) {
                 this.exitText = this.add.image(gameData.width-150, gameData.height/2-100, 'EnterText');
                 this.exitText.scale = 0.3;
@@ -123,7 +134,6 @@ export default class HallwayScene extends Phaser.Scene {
 
     // Spawn other users
     spawnUser(user, user_id) {
-        console.log('--spawning--', user);
         spawnOtherUser(user, user_id, this);
     }
 

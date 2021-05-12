@@ -4,7 +4,7 @@ import { playerData, users } from '../helpers/clientData.js';
 
 export default class Message {
     constructor(scene) {
-        this.chatForm = document.getElementById("chat-form");
+        // this.chatForm = document.getElementById("chat-form");
         this.chatMessages = document.querySelector(".chat-messages");
         this.input = document.querySelector('#msg');
 
@@ -28,8 +28,8 @@ export default class Message {
 
 
         if (user) {
-            if (users[user.id]) {
-                user.createSpeechBubble(user.x, user.y - 100, 180, 50, message.text);
+            if (users[message.id]) {
+                user.createSpeechBubble(user.x, user.y - 70, 180, 50, message.text);
                 // Reset time to live
                 user.scene.time.removeAllEvents();
 
@@ -52,22 +52,36 @@ export default class Message {
 
     addEventListener() {
         // Message send
-        this.chatForm.addEventListener("submit", e => {
-            e.preventDefault();
+        if (this.scene) {
+            this.input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    if (this.input.value == "") {
+                        this.input.value.focus();
+                    } else {
+                        // Send message to server
 
-            // Get message text
-            const msg = e.target.elements.msg.value;
-            console.log(this)
-            // Send message to server
-            if (this.scene.scene.key == playerData.scene) {
-                socket.emit("chatMessage", this.scene.player.id, msg);
-            }
+                        if (this.scene) {
+                            // Get message text
+                            let msg = this.input.value;
 
-            // Clear input
-            e.target.elements.msg.value = "";
-            // e.target.elements.msg.focus();
-            e.target.elements.msg.blur();
-        });
+                            if (this.scene.scene.key == playerData.scene) {
+                                socket.emit("chatMessage", this.scene.player.id, msg);
+                            }
+
+                            // Clear input
+                            this.input.value = "";
+                            // e.target.elements.msg.focus();
+                            this.input.blur();
+                        }
+                    }
+
+
+
+                }
+            });
+
+
+        }
     }
 
 }

@@ -22,7 +22,7 @@ const rooms = {
     r3: [0, 0, 0, 0, 0],
     r4: [0, 0, 0, 0, 0]
 }
-let maxPlayersInRoom = 3;
+let maxPlayersInRoom = 10;
 
 
 // Server setup
@@ -45,7 +45,6 @@ io.on('connection', (socket) => {
         if (users[ids[socket.id]]) {
             socket.to(users[ids[socket.id]].roomName).emit("message", formatMessage(botName, `Oseba ${users[ids[socket.id]].name} je zapustila igro.`));
             // Leave room
-            console.log(users[ids[socket.id]].roomName);
             leaveRoom(socket, users[ids[socket.id]].roomName);
         }
 
@@ -80,9 +79,7 @@ io.on('connection', (socket) => {
         // Spawn other users in your client
         for (let id in users) {
 
-            // console.log(users);
             if (id != user_id && users[id].roomName == users[user_id].roomName) {
-                console.log(users[id].roomName, users[user_id].roomName);
                 socket.emit('spawnUser', users[id], id);
             }
         };
@@ -115,8 +112,9 @@ io.on('connection', (socket) => {
     socket.on("chatMessage", (user_id, msg) => {
 
         // Send message to all clients
+        socket.emit("message_player", formatMessage(users[user_id].name, msg, user_id));
         socket.to(users[user_id].roomName).emit("message", formatMessage(users[user_id].name, msg, user_id));
-        socket.emit("message", formatMessage(users[user_id].name, msg, user_id));
+        
     });
 
     // Changing room
@@ -173,28 +171,22 @@ const getRoomName = (id) => {
             break;
         }
     }
-    console.log('promise');
     return roomName;
 }
 
 const newRoomSpawn = async (socket, user_id, newRoom) => {
 
     users[user_id].roomName = getRoomName(newRoom);
-    console.log('Joining room:', users[user_id].roomName);
     socket.join(users[user_id].roomName);
 
     // Spawn other users in your client
     for (let id in users) {
 
         if (id != user_id && users[id].roomName == users[user_id].roomName) {
-
-            console.log('spawning:', users[id]);
             socket.emit('spawnUser', users[id], id);
-
         }
     };
     // Spawn your player in other clients
-    console.log(users[user_id]);
     socket.to(users[user_id].roomName).emit('spawnUser', users[user_id], user_id);
 
 }

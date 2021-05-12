@@ -20,26 +20,30 @@ export default class LoginScene extends Phaser.Scene {
         login.style.display = "block";
 
         // Add background
-        this.add.image(gameData.width/2, gameData.height/2, 'LoginBG');
+        this.add.image(gameData.width / 2, gameData.height / 2, 'LoginBG');
 
         // Add logo
-        this.add.image(gameData.width/2, gameData.height/8, 'Logo');
+        this.add.image(gameData.width / 2, gameData.height / 8, 'Logo');
 
         // Add input
-        this.add.image(gameData.width/2, gameData.height/2-50, 'Input');
+        this.add.image(gameData.width / 2, gameData.height / 2 - 50, 'Input');
 
         // Add play button to screen
-        const playBtn = this.add.image(gameData.width/2, gameData.height/1.5-30, 'PlayBtn');
+        const playBtn = this.add.image(gameData.width / 2, gameData.height / 1.5 - 30, 'PlayBtn');
 
         // Play button functionality
         playBtn
             .setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
+
                 let username = document.getElementById('username_input').value;
-                var chat = document.getElementById("chat");
-                chat.style.display = "block";
-                login.style.display = "none";
-                this.startGame(username);
+
+                if (username != "") {
+                    var chat = document.getElementById("chat");
+                    chat.style.display = "block";
+                    login.style.display = "none";
+                    this.startGame(username);
+                }
 
             });
 
@@ -49,6 +53,6 @@ export default class LoginScene extends Phaser.Scene {
 
         // Load the main scene
         this.scene.start('MainScene', { username: username });
-        
+
     }
 }

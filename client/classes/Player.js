@@ -91,7 +91,6 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         this.setVelocity(playerVelocity.x, playerVelocity.y);
 
         // Send data to server
-        // console.log(this.frame.name)
         this.server.playerPosition(this.id, playerVelocity, this.x, this.y);
 
     }
@@ -120,14 +119,14 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         if(user.username) {
             // user.usernameBG.y = y - 80;
             // user.usernameBG.x = x;
-            user.username.y = y - 80;
+            user.username.y = y + 85;
             user.username.x = x;
         }
         if (user.bubble && user.bubbleContent) {
             user.bubble.x = user.x;
-            user.bubble.y = user.y - 100;
-            user.bubbleContent.x = user.x + 10;
-            user.bubbleContent.y = user.y - 100;
+            user.bubble.y = user.y - 70;
+            user.bubbleContent.x = user.x + 15;
+            user.bubbleContent.y = user.y - 114;
         }
     }
 
@@ -146,7 +145,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         // this.usernameBG = this.scene.add.image(this.x, this.y - 80, 'UsernameBG');
         // this.usernameBG.scale = 0.3;
 
-        this.username = this.scene.add.text(this.x, this.y - 80, username, {
+        this.username = this.scene.add.text(this.x, this.y + 85, username, {
             fontFamily: 'Klepetko',
             fontSize: '20pt',
             strokeThickness: 2,
@@ -230,9 +229,9 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     updateSpeechBubble() {
         if (this.bubble && this.bubbleContent) {
             this.bubble.x = this.x;
-            this.bubble.y = this.y - 100;
+            this.bubble.y = this.y - 70;
             this.bubbleContent.x = this.x + 15;
-            this.bubbleContent.y = this.y - 145;
+            this.bubbleContent.y = this.y - 114;
         }
     }
 

@@ -9,16 +9,13 @@ export const setSocketEvents = (scene) => {
     // Register
     socket.on('registerPlayer', (id) => {
         playerData.id = id;
-        console.log(playerData);
         scene.player.id = id;
         users[scene.player.id] = scene.player;
     });
 
     // Spawn other users
     socket.on('spawnUser', (user, user_id) => {
-        console.log('spawning', user);
         scene.spawnUser(user, user_id);
-        // add a list of all rooms and call accordingly
     });
 
     // Disconnect a user
@@ -39,6 +36,10 @@ export const setSocketEvents = (scene) => {
     // Message recieve
     socket.on("message", msg => {
         scene.message.outputMessage(msg, users[msg.id]);
+        scene.message.scrollToTop();
+    });
+    socket.on("message_player", msg => {
+        scene.message.outputMessage(msg, scene.player);
         scene.message.scrollToTop();
     });
 

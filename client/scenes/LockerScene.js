@@ -14,8 +14,10 @@ export default class LockerScene extends Phaser.Scene {
     init(data) {
         this.playerName = data.player.usernameText;
         data.player.server.changeRoom(playerData.id, 4);
-        
-        // console.log(this.playerData);
+        this.playerSpawn = {
+            x: 300,
+            y: gameData.height/2 - 100
+        }
     }
 
     preload() {
@@ -32,12 +34,12 @@ export default class LockerScene extends Phaser.Scene {
     }
 
     createBackground() {
-        this.add.image(gameData.width/2, gameData.height/2, 'Locker');
-        this.add.text(0,0,'Locker');
+        this.add.image(gameData.width / 2, gameData.height / 2, 'Locker');
+        this.add.text(0, 0, 'Locker');
 
-        this.lockerExit = this.matter.add.rectangle(150, gameData.height/2, 50, 100, 0xff0000, 1);
+        this.lockerExit = this.matter.add.rectangle(150, gameData.height / 2, 50, 100, 0xff0000, 1);
         this.lockerExit.isStatic = true;
-        this.lockerExitBorder = this.matter.add.rectangle(150, gameData.height/2, 70, 120, 0xff0000, 1);
+        this.lockerExitBorder = this.matter.add.rectangle(150, gameData.height / 2, 70, 120, 0xff0000, 1);
         this.lockerExitBorder.isStatic = true;
     }
 
@@ -48,16 +50,15 @@ export default class LockerScene extends Phaser.Scene {
     createCollisionEvents() {
         // Exit locker
         this.lockerExit.onCollideCallback = (pair) => {
-            console.log('pair:',pair)
-            if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.image(150, gameData.height/2-100, 'ExitText');
+            if (pair.bodyB.gameObject.id == playerData.id) {
+                this.exitText = this.add.image(150, gameData.height / 2 - 100, 'ExitText');
                 this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.exitLocker(), this);
             }
         };
 
         this.lockerExit.onCollideEndCallback = () => {
-            if(this.exitText) {
+            if (this.exitText) {
                 this.exitText.destroy();
             }
             this.input.keyboard.removeAllListeners('keydown_E');
@@ -68,7 +69,7 @@ export default class LockerScene extends Phaser.Scene {
         this.player.update();
 
         // Disable movement while typing (may get removed for efficency)
-        if(this.message.input === document.activeElement) {
+        if (this.message.input === document.activeElement) {
             this.input.keyboard.enabled = false;
         } else {
             this.input.keyboard.enabled = true;
@@ -77,7 +78,6 @@ export default class LockerScene extends Phaser.Scene {
 
     // Spawn other users
     spawnUser(user, user_id) {
-        console.log('--spawning--', user);
         spawnOtherUser(user, user_id, this);
     }
 

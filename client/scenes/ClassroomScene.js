@@ -14,8 +14,10 @@ export default class ClassroomScene extends Phaser.Scene {
     init(data) {
         this.playerName = data.player.usernameText;
         data.player.server.changeRoom(playerData.id, 3);
-
-        // console.log(this.playerData);
+        this.playerSpawn = {
+            x: 1620,
+            y: gameData.height/2 - 100
+        }
     }
 
     preload() {
@@ -67,11 +69,8 @@ export default class ClassroomScene extends Phaser.Scene {
         this.quizEnteranceBorder.isStatic = true;
 
         this.quizEnterance.onCollideCallback = (pair) => {
-            // if(pair.bodyB.gameObject.id == playerData.id) {
             this.enterText = this.add.image(gameData.width/2 + 100, 140, 'ANG');
             this.enterText.scale = 0.5;
-            // }
-            console.log('smo v kvizu');
             this.input.keyboard.on('keydown_E', () => this.enterQuiz(), this);
         }
 
@@ -79,7 +78,6 @@ export default class ClassroomScene extends Phaser.Scene {
             if (this.enterText) {
                 this.enterText.destroy();
             }
-            console.log('oddaljujem se od kviza');
             this.input.keyboard.removeAllListeners('keydown_E');
         }
 
@@ -91,13 +89,11 @@ export default class ClassroomScene extends Phaser.Scene {
         this.dndEnterance.onCollideCallback = () => {
             this.enterText = this.add.image(gameData.width/2 + 100, 140, 'MAT');
             this.enterText.scale = 0.5;
-            console.log('smo v kvizu');
             this.input.keyboard.on('keydown_E', () => this.enterdnd(), this);
         }
 
         this.dndEnterance.onCollideEndCallback = () => {
             this.enterText.destroy();
-            console.log('oddaljujem se od kviza');
             this.input.keyboard.removeAllListeners('keydown_E');
         }
     }
@@ -115,7 +111,6 @@ export default class ClassroomScene extends Phaser.Scene {
 
     // Spawn other users
     spawnUser(user, user_id) {
-        console.log('--spawning--', user);
         spawnOtherUser(user, user_id, this);
     }
 

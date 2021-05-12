@@ -27,8 +27,8 @@ export const spawnPlayer = (scene) => {
     // Create a player game object
     scene.player = new Player({
         scene: scene,
-        x: 400,
-        y: 300,
+        x: scene.playerSpawn.x,
+        y: scene.playerSpawn.y,
         texture: 'character',
         frame: 'character_front_',
     }, socket, playerData.id, scene.playerName);
@@ -72,7 +72,7 @@ export const spawnOtherUser = (user, user_id, scene) => {
         scene: scene,
         x: user.x,
         y: user.y,
-        texture: 'character',
+        texture: user.texture,
         frame: 'character_front_'
     }, socket, user_id, user.name);
 
@@ -97,16 +97,12 @@ export const changeRoom = (leave, enter, scene) => {
             delete users[i];
         }
     }
-    console.log('ready to leave', users);
-    // scene.player.server.changeRoom(playerData.id, 2);
     removeSocketEvents();
+    delete scene.message.scene;
+    // scene.message.chatForm.removeEventListener("submit", null);
     delete scene.message;
     playerData.scene = scenes[num];
-    scene.scene.start(scenes[num], {player: scene.player});
-    console.log(scene)
-    // scene.player.username.destroy();
-    // scene.player.destroy();
-    // delete scene.message;
+    scene.scene.start(scenes[num], {player: scene.player, prevRoom: leave});
 }
 
 export const preloadHUD = (scene) => {
