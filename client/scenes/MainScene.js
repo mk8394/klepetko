@@ -1,7 +1,8 @@
 // Schoolyard scene (Main Scene)
 
 import Player from '../classes/Player.js';
-export const socket = io('http://localhost:3000');
+const socketURL = `${window.location.hostname}:5000`;
+export const socket = io.connect(socketURL, {secure: true});
 
 import { setSocketEvents, removeSocketEvents } from '../helpers/socketEvents.js'
 import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, createHUD, preloadHUD, setBounds, skinsMale, framesMale, framesMalePaths, atlasMalePaths, animsMalePaths, animsNames, skinsFemale, framesFemale, framesFemalePaths, atlasFemalePaths, animsFemalePaths } from '../helpers/clientData.js';
