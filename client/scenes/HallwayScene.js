@@ -87,8 +87,8 @@ export default class HallwayScene extends Phaser.Scene {
         // Exit school
         this.schoolExit.onCollideCallback = (pair) => {
             if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.image(gameData.width/2, 950, 'ExitText');
-                this.exitText.scale = 0.3;
+                this.exitText = this.add.image(gameData.width/2, 650, 'ExitText');
+                // this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.leaveSchool(), this);
             }
         };
@@ -103,8 +103,8 @@ export default class HallwayScene extends Phaser.Scene {
         // Enter classroom
         this.classroomEnter.onCollideCallback = (pair) => {
             if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.image(150, gameData.height/2-100, 'EnterText');
-                this.exitText.scale = 0.3;
+                this.exitText = this.add.image(170, gameData.height/2-200, 'EnterText');
+                // this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.enterClassroom(), this);
             }
         };
@@ -119,8 +119,8 @@ export default class HallwayScene extends Phaser.Scene {
         // Enter locker
         this.lockerEnter.onCollideCallback = (pair) => {
             if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.image(gameData.width-150, gameData.height/2-100, 'EnterText');
-                this.exitText.scale = 0.3;
+                this.exitText = this.add.image(gameData.width-170, gameData.height/2-200, 'EnterText');
+                // this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.enterLocker(), this);
             }
         };

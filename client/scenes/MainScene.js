@@ -99,8 +99,8 @@ export default class MainScene extends Phaser.Scene {
     createCollisionEvents() {
         this.schoolEntrance.onCollideCallback = (pair) => {
             if(pair.bodyB.gameObject.id == playerData.id) {
-                this.enterText = this.add.image(gameData.width/2, 227, 'EnterText');
-                this.enterText.scale = 0.3;
+                this.enterText = this.add.image(gameData.width/2, gameData.height/2-90, 'EnterText');
+                // this.enterText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.enterSchool(), this);
             }
         };

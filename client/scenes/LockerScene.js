@@ -59,8 +59,8 @@ export default class LockerScene extends Phaser.Scene {
         // Exit locker
         this.lockerExit.onCollideCallback = (pair) => {
             if (pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.image(150, gameData.height / 2 - 100, 'ExitText');
-                this.exitText.scale = 0.3;
+                this.exitText = this.add.image(170, gameData.height / 2 - 200, 'ExitText');
+                // this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.exitLocker(), this);
             }
         };

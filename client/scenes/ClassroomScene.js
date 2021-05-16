@@ -1,6 +1,7 @@
 // Classroom scene
 
 import Player from '../classes/Player.js';
+import TweenHelper from '../helpers/tweenHelper.js';
 import { socket } from './MainScene.js';
 
 import { setSocketEvents, removeSocketEvents } from '../helpers/socketEvents.js'
@@ -43,6 +44,10 @@ export default class ClassroomScene extends Phaser.Scene {
         this.classroomExit.isStatic = true;
         this.classroomExitBorder = this.matter.add.rectangle(gameData.width-80, gameData.height/2-60, 70, 120, 0xff0000, 1);
         this.classroomExitBorder.isStatic = true;
+
+        this.MAT = this.add.image(875, 80, 'MAT');
+        this.ANG = this.add.image(1058, 78, 'ANG');
+        this.SLO = this.add.image(1236, 74, 'SLO');
     }
 
     createHitboxes() {
@@ -69,8 +74,8 @@ export default class ClassroomScene extends Phaser.Scene {
     createCollisionEvents() {
         this.classroomExit.onCollideCallback = (pair) => {
             if (pair.bodyB.gameObject.id == playerData.id) {
-                this.enterText = this.add.image(gameData.width-150, gameData.height/2-100, 'ExitText');
-                this.enterText.scale = 0.3;
+                this.enterText = this.add.image(gameData.width-170, gameData.height/2-200, 'ExitText');
+                // this.enterText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.exitClassroom(), this);
             }
         };
@@ -88,8 +93,9 @@ export default class ClassroomScene extends Phaser.Scene {
         this.quizEnteranceBorder.isStatic = true;
 
         this.quizEnterance.onCollideCallback = (pair) => {
-            this.enterText = this.add.image(gameData.width/2 + 100, 140, 'ANG');
-            this.enterText.scale = 0.5;
+            this.enterText = this.add.image(912, 365, 'Play');
+            TweenHelper.flashElement(this, this.ANG, -0.2);
+            this.ANG.tint = 0xEAF400;
             this.input.keyboard.on('keydown_E', () => this.enterQuiz(), this);
         }
 
@@ -98,22 +104,27 @@ export default class ClassroomScene extends Phaser.Scene {
                 this.enterText.destroy();
             }
             this.input.keyboard.removeAllListeners('keydown_E');
+            this.ANG.clearTint();
+            TweenHelper.resetElement(this, this.ANG);
         }
 
-        this.dndEnterance = this.matter.add.rectangle(370, 665, 50, 50, 0x000000, 1);
+        this.dndEnterance = this.matter.add.rectangle(665, 665, 50, 50, 0x000000, 1);
         this.dndEnterance.isStatic = true;
-        this.dndEnteranceBorder = this.matter.add.rectangle(370, 665, 70, 70, 0x000000, 1);
+        this.dndEnteranceBorder = this.matter.add.rectangle(665, 665, 70, 70, 0x000000, 1);
         this.dndEnteranceBorder.isStatic = true;
 
         this.dndEnterance.onCollideCallback = () => {
-            this.enterText = this.add.image(gameData.width/2 + 100, 140, 'MAT');
-            this.enterText.scale = 0.5;
+            this.enterText = this.add.image(607, 575, 'Play');
+            TweenHelper.flashElement(this, this.MAT, 0.2);
+            this.MAT.tint = 0xEAF400;
             this.input.keyboard.on('keydown_E', () => this.enterdnd(), this);
         }
 
         this.dndEnterance.onCollideEndCallback = () => {
             this.enterText.destroy();
             this.input.keyboard.removeAllListeners('keydown_E');
+            this.MAT.clearTint();
+            TweenHelper.resetElement(this, this.MAT);
         }
     }
 

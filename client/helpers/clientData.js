@@ -172,10 +172,12 @@ export const preloadHUD = (scene) => {
     scene.load.image('EmojiChat', '../assets/HUD/EmojiChat.png');
     scene.load.image('Help', '../assets/HUD/Help.png');
     scene.load.image('InputChat', '../assets/HUD/InputChat.png');
-    scene.load.image('EnterText', '../assets/HUD-Legacy/EnterText.png');
-    scene.load.image('ExitText', '../assets/HUD-Legacy/ExitText.png');
-    scene.load.image('ANG', '../assets/HUD-Legacy/ANG.png');
-    scene.load.image('MAT', '../assets/HUD-Legacy/MAT.png');
+    scene.load.image('EnterText', '../assets/HUD/Enter.png');
+    scene.load.image('ExitText', '../assets/HUD/Exit.png');
+    scene.load.image('Play', '../assets/HUD/Play.png');
+    scene.load.image('SLO', '../assets/HUD/SLO.png');
+    scene.load.image('ANG', '../assets/HUD/ANG.png');
+    scene.load.image('MAT', '../assets/HUD/MAT.png');
 }
 
 export const createHUD = (scene) => {
