@@ -18,6 +18,7 @@ export default class ClassroomScene extends Phaser.Scene {
             x: 1620,
             y: gameData.height/2 - 100
         }
+        this.skinNUM = data.player.skinNUM;
     }
 
     preload() {
@@ -27,24 +28,42 @@ export default class ClassroomScene extends Phaser.Scene {
     }
 
     create() {
+        createHUD(this);
         setBounds(this);
         this.createBackground();
         spawnPlayer(this);
-        createHUD(this);
     }
 
     createBackground() {
-        this.add.image(gameData.width / 2, gameData.height / 2, 'Classroom');
+        
+        this.add.image(gameData.width / 2, 490, 'Classroom');
         this.add.text(0, 0, 'Classroom');
 
-        this.classroomExit = this.matter.add.rectangle(gameData.width-150, gameData.height/2, 50, 100, 0xff0000, 1);
+        this.classroomExit = this.matter.add.rectangle(gameData.width-80, gameData.height/2-60, 50, 100, 0xff0000, 1);
         this.classroomExit.isStatic = true;
-        this.classroomExitBorder = this.matter.add.rectangle(gameData.width-150, gameData.height/2, 70, 120, 0xff0000, 1);
+        this.classroomExitBorder = this.matter.add.rectangle(gameData.width-80, gameData.height/2-60, 70, 120, 0xff0000, 1);
         this.classroomExitBorder.isStatic = true;
     }
 
     createHitboxes() {
-        // this.matter.add.rectangle(gameData.width/2, 200, 560, 300, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(gameData.width/2, 77, gameData.width, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(gameData.width/2, 883, gameData.width, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(0, gameData.height/2, 300, gameData.height, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(gameData.width, gameData.height/2, 300, gameData.height, 0xff0000).isStatic = true;
+
+        this.matter.add.rectangle(315, 668, 200, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(608, 668, 200, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(915, 668, 200, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(1215, 668, 200, 100, 0xff0000).isStatic = true;
+
+        this.matter.add.rectangle(315, 465, 200, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(610, 465, 200, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(915, 465, 200, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(1210, 465, 200, 100, 0xff0000).isStatic = true;
+
+        this.matter.add.rectangle(410, 240, 400, 100, 0xff0000).isStatic = true;
+        
+        this.matter.add.rectangle(gameData.width-310, 160, 90, 80, 0xff0000).isStatic = true;
     }
 
     createCollisionEvents() {
@@ -56,16 +75,16 @@ export default class ClassroomScene extends Phaser.Scene {
             }
         };
 
-        this.classroomExit.onCollideEndCallback = () => {
-            if (this.enterText) {
+        this.classroomExit.onCollideEndCallback = (pair) => {
+            if (this.enterText && pair.bodyB.gameObject.id == playerData.id) {
                 this.enterText.destroy();
             }
             this.input.keyboard.removeAllListeners('keydown_E');
         }
 
-        this.quizEnterance = this.matter.add.rectangle(gameData.width/2, 480, 100, 50, 0x000000, 1);
+        this.quizEnterance = this.matter.add.rectangle(gameData.width/2+5, 420, 50, 50, 0x000000, 1);
         this.quizEnterance.isStatic = true;
-        this.quizEnteranceBorder = this.matter.add.rectangle(gameData.width/2, 480, 120, 70, 0x000000, 1);
+        this.quizEnteranceBorder = this.matter.add.rectangle(gameData.width/2+5, 420, 70, 70, 0x000000, 1);
         this.quizEnteranceBorder.isStatic = true;
 
         this.quizEnterance.onCollideCallback = (pair) => {
@@ -81,9 +100,9 @@ export default class ClassroomScene extends Phaser.Scene {
             this.input.keyboard.removeAllListeners('keydown_E');
         }
 
-        this.dndEnterance = this.matter.add.rectangle(400, 700, 100, 50, 0x000000, 1);
+        this.dndEnterance = this.matter.add.rectangle(370, 665, 50, 50, 0x000000, 1);
         this.dndEnterance.isStatic = true;
-        this.dndEnteranceBorder = this.matter.add.rectangle(400, 700, 120, 70, 0x000000, 1);
+        this.dndEnteranceBorder = this.matter.add.rectangle(370, 665, 70, 70, 0x000000, 1);
         this.dndEnteranceBorder.isStatic = true;
 
         this.dndEnterance.onCollideCallback = () => {

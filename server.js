@@ -95,7 +95,7 @@ io.on('connection', (socket) => {
 
 
     // Update player position
-    socket.on('playerPosition', (user_id, userVelocity, x, y) => {
+    socket.on('playerPosition', (user_id, userVelocity, x, y, skinNUM) => {
         
         // Store user coordinates
         if (users[user_id]) {
@@ -103,7 +103,7 @@ io.on('connection', (socket) => {
             users[user_id].y = y;
 
             // Send player position to other clients
-            socket.to(users[user_id].roomName).emit('updatePosition', user_id, userVelocity, x, y);
+            socket.to(users[user_id].roomName).emit('updatePosition', user_id, userVelocity, x, y, skinNUM);
         }
 
     });

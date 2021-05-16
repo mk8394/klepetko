@@ -1,0 +1,160 @@
+{
+    "anims": [
+        {
+            "key": "idle_front_02",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_front"
+                }
+            ]
+        },
+        {
+            "key": "walk_back_02",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_behind2"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_behind3"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_behind4"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_behind5"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_behind6"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_behind1"
+                }
+            ]
+        },
+        {
+            "key": "walk_left_02",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_l8"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_l7"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_l6"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_l5"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_l4"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_l3"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_l2"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_l1"
+                }
+            ]
+        },
+        {
+            "key": "walk_right_02",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_d8"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_d7_"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_d6_"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_d5"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_d4_"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_d3_"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_d2"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_side_d1_"
+                }
+            ]
+        },
+        {
+            "key": "walk_front_02",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_front__1"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_front_1"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_front"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_front__3"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_front__4"
+                },
+                {
+                    "key": "boy_02",
+                    "frame": "boy_m1-c3_front__2"
+                }
+            ]
+        }
+    ]
+}

@@ -14,8 +14,8 @@ export default class Server {
         this.socket.emit('joinGame', user);
     }
 
-    playerPosition(id, playerVelocity, x, y) {
-        this.socket.emit('playerPosition', id, playerVelocity, x, y);
+    playerPosition(id, playerVelocity, x, y, skinNUM) {
+        this.socket.emit('playerPosition', id, playerVelocity, x, y, skinNUM);
     }
 
     changeRoom(id, newRoom) {

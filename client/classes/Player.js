@@ -1,7 +1,8 @@
+import { animsNames, playerData } from '../helpers/clientData.js';
 import Server from './Server.js';
 
 export default class Player extends Phaser.Physics.Matter.Sprite {
-    constructor(data, socket, id, username) {
+    constructor(data, socket, id, username, skinNUM) {
 
         // Create and display player
         let { scene, x, y, texture, frame } = data;
@@ -18,9 +19,9 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 
         // Custom collider and sensor
         const {Body, Bodies} = Phaser.Physics.Matter.Matter;
-        let colliderY = this.y + 50;
-        let playerCollider = Bodies.circle(this.x, colliderY, 24, {isSensor: false, label: 'playerCollider'});
-        let playerSensor = Bodies.circle(this.x, colliderY, 58, {isSensor: true, label: 'playerSensor'});
+        let colliderY = this.y;
+        let playerCollider = Bodies.circle(this.x, colliderY+83, 30, {isSensor: false, label: 'playerCollider'});
+        let playerSensor = Bodies.circle(this.x, colliderY+50, 100, {isSensor: true, label: 'playerSensor'});
         const compoundBody = Body.create({
             parts: [playerCollider, playerSensor]
         });
@@ -28,14 +29,29 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         
         this.socket = socket;
         this.usernameText = username;
+        this.skinNUM = skinNUM;
 
     }
 
     static preload(scene) {
-        scene.load.atlas('character', '../assets/character/Atlases/character.png', '../assets/character/Atlases/character_atlas.json');
-        scene.load.animation('character_anim', '../assets/character/Atlases/character_anim.json');
+        scene.load.atlas('boy_01', '../assets/character/Atlases/boy_01.png', '../assets/character/Atlases/boy_01_atlas.json');
+        scene.load.animation('boy_01_anim', '../assets/character/Atlases/boy_01_anim.json');
+        scene.load.atlas('boy_02', '../assets/character/Atlases/boy_02.png', '../assets/character/Atlases/boy_02_atlas.json');
+        scene.load.animation('boy_02_anim', '../assets/character/Atlases/boy_02_anim.json');
+        scene.load.atlas('boy_03', '../assets/character/Atlases/boy_03.png', '../assets/character/Atlases/boy_03_atlas.json');
+        scene.load.animation('boy_03_anim', '../assets/character/Atlases/boy_03_anim.json');
+        scene.load.atlas('boy_04', '../assets/character/Atlases/boy_04.png', '../assets/character/Atlases/boy_04_atlas.json');
+        scene.load.animation('boy_04_anim', '../assets/character/Atlases/boy_04_anim.json');
+        scene.load.atlas('girl_01', '../assets/character/Atlases/girl_01.png', '../assets/character/Atlases/girl_01_atlas.json');
+        scene.load.animation('girl_01_anim', '../assets/character/Atlases/girl_01_anim.json');
+        scene.load.atlas('girl_02', '../assets/character/Atlases/girl_02.png', '../assets/character/Atlases/girl_02_atlas.json');
+        scene.load.animation('girl_02_anim', '../assets/character/Atlases/girl_02_anim.json');
+        scene.load.atlas('girl_03', '../assets/character/Atlases/girl_03.png', '../assets/character/Atlases/girl_03_atlas.json');
+        scene.load.animation('girl_03_anim', '../assets/character/Atlases/girl_03_anim.json');
+        scene.load.atlas('girl_04', '../assets/character/Atlases/girl_04.png', '../assets/character/Atlases/girl_04_atlas.json');
+        scene.load.animation('girl_04_anim', '../assets/character/Atlases/girl_04_anim.json');
         scene.load.image('SpeechBubble', '../assets/HUD/SpeechBubble.png');
-        scene.load.image('UsernameBG', '../assets/HUD/UsernameBG.png');
+        // scene.load.image('UsernameBG', '../assets/HUD/UsernameBG.png');
     }
 
     // Getter for velocity (used in movement)
@@ -62,28 +78,28 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         if (this.inputKeys.left.isDown && this.inputKeys.right.isUp) {
             playerVelocity.x = -1;
             if(this.inputKeys.up.isUp && this.inputKeys.down.isUp) {
-                this.anims.play('walk_left', true);
+                this.anims.play(playerData.animsNames[3], true);
             }
         } else if (this.inputKeys.right.isDown && this.inputKeys.left.isUp) {
             playerVelocity.x = 1;
             if(this.inputKeys.up.isUp && this.inputKeys.down.isUp) {
-                this.anims.play('walk_right', true);
+                this.anims.play(playerData.animsNames[2], true);
             }
         }
 
         if (this.inputKeys.up.isDown && this.inputKeys.down.isUp) {
             playerVelocity.y = -1;
-            this.anims.play('walk_back', true);
+            this.anims.play(playerData.animsNames[1], true);
         } else if (this.inputKeys.down.isDown && this.inputKeys.up.isUp) {
             playerVelocity.y = 1;
-            this.anims.play('walk_front', true);
+            this.anims.play(playerData.animsNames[0], true);
         }
 
         if(this.inputKeys.down.isUp &&
             this.inputKeys.up.isUp &&
             this.inputKeys.right.isUp &&
             this.inputKeys.left.isUp) {
-                this.anims.play('idle_front', false);
+                this.anims.play(playerData.animsNames[4], false);
         }
 
         playerVelocity.normalize();
@@ -91,11 +107,11 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         this.setVelocity(playerVelocity.x, playerVelocity.y);
 
         // Send data to server
-        this.server.playerPosition(this.id, playerVelocity, this.x, this.y);
+        this.server.playerPosition(this.id, playerVelocity, this.x, this.y, this.skinNUM);
 
     }
 
-    updateUser(user, userVelocity, x, y) {
+    updateUser(user, userVelocity, x, y, skinNUM) {
 
         // user.setVelocity(userVelocity.x, userVelocity.y);
         if(user) {
@@ -103,15 +119,15 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
             user.y = y;
 
             if (userVelocity.y < 0) {
-                user.anims.play('walk_back', true);
+                user.anims.play(animsNames[skinNUM][1], true);
             } else if (userVelocity.y > 0) {
-                user.anims.play('walk_front', true);
+                user.anims.play(animsNames[skinNUM][0], true);
             } else if (userVelocity.x < 0) {
-                user.anims.play('walk_left', true);
+                user.anims.play(animsNames[skinNUM][3], true);
             } else if (userVelocity.x > 0) {
-                user.anims.play('walk_right', true);
+                user.anims.play(animsNames[skinNUM][2], true);
             } else {
-                user.anims.play('idle_front', false);
+                user.anims.play(animsNames[skinNUM][4], false);
             }
     
         }
