@@ -27,9 +27,9 @@ export const setSocketEvents = (scene) => {
     });
 
     // Update position of users
-    socket.on('updatePosition', (id, userVelocity, x, y) => {
+    socket.on('updatePosition', (id, userVelocity, x, y, skinNUM) => {
         if (users[id]) {
-            users[id].updateUser(users[id], userVelocity, x, y);
+            users[id].updateUser(users[id], userVelocity, x, y, skinNUM);
         }
     });
 

@@ -1,0 +1,160 @@
+{
+    "anims": [
+        {
+            "key": "idle_front_06",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_front_"
+                }
+            ]
+        },
+        {
+            "key": "walk_left_06",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_character_side_l8"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_character_side_l7"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_character_side_l6"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_character_side_l5"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_character_side_l4"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_l3"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_l2"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_l1"
+                }
+            ]
+        },
+        {
+            "key": "walk_right_06",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_d8"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_d7_"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_d6_"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_d5"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_d4_"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_d3_"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_d2"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_side_d1_"
+                }
+            ]
+        },
+        {
+            "key": "walk_back_06",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_back"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_behind2"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_behind3"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_behind4"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_behind5"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_behind6"
+                }
+            ]
+        },
+        {
+            "key": "walk_front_06",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_front_2"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_front3"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_front4"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_front6"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_front5"
+                },
+                {
+                    "key": "girl_02",
+                    "frame": "girl_m1-c2_front"
+                }
+            ]
+        }
+    ]
+}
