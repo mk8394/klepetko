@@ -3,19 +3,20 @@
   }  
 
   #dragndrop {
-    background-image: linear-gradient(to bottom right, #a458a3, #7658a5);
+    position: absolute;
+    background-image: linear-gradient(to bottom right, #ec4599, #ef474c);
     padding: 0;
     margin: 0;
     width: 1920px;
     height: 1080px;
-    z-index: 50;
+    z-index: 51;
   }
 
   .dnd-draggables-grid{
     display: grid;
-    position: absolute;
-    top: 250px;
-    right: 250px;
+    position: relative;
+    top: 180px;
+    left: 1200px;
     grid-template-columns: repeat(2, 200px);
   }
 
@@ -49,14 +50,16 @@
     background-color: white;
     color: #7658a5;
     font-size: 40px;
-    padding: 26px;
+    height: 100px;
     margin: 20px;
     width: 300px;
     border-radius: 50px;
+    padding-left: 20px;
   }
 
   .dnd-draggable.dragging {
     opacity: 0.5;
+    margin: 0px !important;
   }
 
   .dnd-correct {
@@ -68,11 +71,13 @@
     text-align: center;
     width: 80px;
     height: 80px;
-    margin: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
     padding-top: 16px;
     font-family: 'quicksand';
     cursor: move;
     border: none;
+    cursor: not-allowed;
   }
 
   .dnd-wrong {
@@ -84,7 +89,8 @@
     text-align: center;
     width: 80px;
     height: 80px;
-    margin: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
     padding-top: 16px;
     font-family: 'quicksand';
     cursor: move;
@@ -92,12 +98,12 @@
   }
 
   .dnd-start-btn {
-    background: url(./Klepetko_IGRAJ_CTA_Začetni_Screen_ZAČNI-12.png);
+    background: url(./Klepetko_Login-Screen-05.png);
     background-repeat: no-repeat;
     background-size: 300px;
-    position: absolute;
-    left: 42%;
-    top: 55%;
+    position: relative;
+    top: 200px;
+    left: 65  px;
     width: 425px;
     height: 131px;
     border: none;
@@ -116,6 +122,20 @@
     padding-left: 30px;
     padding-right: 30px;
     margin-top: 20px;
+    position: relative;
+    top: 800px;
+  }
+
+  #dnd-response {
+    font-weight: 800;
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+    top: 800px;
   }
 
   
+#equationFrom {
+  padding-top: 25px;
+  padding-left: 15px;
+}
