@@ -75,6 +75,7 @@ export let animsFemalePaths = [
 
 ]
 
+let isHelpOpen = false;
 
 export const message = (scene) => {
     let message = new Message(scene);
@@ -166,11 +167,12 @@ export const changeRoom = (leave, enter, scene) => {
 export const preloadHUD = (scene) => {
     scene.load.image('HUD', '../assets/HUD/Background.png');
     scene.load.image('Coins', '../assets/HUD/Coins.png');
-    scene.load.image('Profile', '../assets/HUD-Legacy/Profile.png');
     scene.load.image('Map', '../assets/HUD/Map.png');
     scene.load.image('Chat', '../assets/HUD/Chat.png');
     scene.load.image('EmojiChat', '../assets/HUD/EmojiChat.png');
     scene.load.image('Help', '../assets/HUD/Help.png');
+    scene.load.image('HelpClose', '../assets/HUD/HelpClose.png');
+    scene.load.image('HelpPopup', '../assets/HUD/HelpPopup.png');
     scene.load.image('InputChat', '../assets/HUD/InputChat.png');
     scene.load.image('EnterText', '../assets/HUD/Enter.png');
     scene.load.image('ExitText', '../assets/HUD/Exit.png');
@@ -185,10 +187,10 @@ export const createHUD = (scene) => {
     scene.add.image(gameData.width / 2, gameData.height - 60, 'HUD');
     scene.add.image(1758, 1030, 'Map');
     scene.add.image(204, 1030, 'Coins');
-    scene.add.text(195, 1014, playerData.coins, {fontFamily: 'Klepetko', fontSize: 30, color: '#DED7E9'});
+    scene.add.text(195, 1014, playerData.coins, { fontFamily: 'Klepetko', fontSize: 30, color: '#DED7E9' });
     const chatbox = document.getElementById("chat-main");
-    scene.add.image(70, 1030, 'Chat')
-        .setInteractive({ useHandCursor: true })
+    const chat = scene.add.image(70, 1030, 'Chat');
+    chat.setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
             if (chatbox.style.display == 'none') {
                 chatbox.style.display = 'block';
@@ -196,11 +198,15 @@ export const createHUD = (scene) => {
                 chatbox.style.display = 'none';
             }
         });
-    scene.add.image(1850, 1030, 'Help');
+    const help = scene.add.image(1850, 1030, 'Help');
+    help.setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => {
+            showHelp(scene);
+        });
     scene.add.image(960, 1030, 'InputChat');
     const emojiPanel = document.getElementById("emoji_wrapper");
-    const emojiBtn = scene.add.image(1512, 1030, 'EmojiChat')
-        .setInteractive({ useHandCursor: true })
+    const emojiBtn = scene.add.sprite(1512, 1030, 'EmojiChat');
+    emojiBtn.setInteractive({ cursor: 'pointer' })
         .on('pointerdown', () => {
             if (emojiPanel.style.display == 'none') {
                 emojiPanel.style.display = 'block';
@@ -217,3 +223,30 @@ export const setBounds = (scene) => {
     // scene.matter.add.rectangle(0, gameData.height / 2, 50, 1080, 0xff0000, 1).isStatic = true;
     // scene.matter.add.rectangle(gameData.width, gameData.height / 2, 50, 1080, 0xff0000, 1).isStatic = true;
 }
+
+export const showHelp = (scene) => {
+    if (!isHelpOpen) {
+        scene.helpPopup = scene.add.image(gameData.width / 2, gameData.height / 2, 'HelpPopup');
+        scene.helpPopup.scale = 1.2;
+        isHelpOpen = true;
+        scene.helpClose = scene.add.image(1400, 300, 'HelpClose');
+        scene.helpClose.setInteractive({ useHandCursor: true })
+            .on('pointerdown', () => {
+                scene.helpPopup.destroy();
+                scene.helpClose.destroy();
+                scene.helpText.destroy();
+                scene.boldText.destroy();
+                isHelpOpen = false;
+            });
+        scene.helpText = scene.add.text(gameData.width / 2 - 50, gameData.height / 2 - 120, helpText, { fontFamily: 'Klepetko1', fontSize: 20, color: '#ED4599' });
+        scene.boldText = scene.add.text(gameData.width / 2 - 50, gameData.height / 2 - 155, boldText, { fontFamily: 'Klepetko', fontSize: 20, color: '#ED4599' });
+    } else {
+        scene.helpPopup.destroy();
+        scene.helpClose.destroy();
+        scene.helpText.destroy();
+        scene.boldText.destroy();
+        isHelpOpen = false;
+    }
+}
+const boldText = "Živijo in dobrodošel v Klepetku!\n\n\n\n\n\n\n\n\n\n\n\nŽelim ti veliko lepih trenutkov!\nTvoj Klepetko"
+const helpText = "Tukaj se lahko pogovarjaš s\nsvojimi prijatelji, spoznaš nove\nsovrstnike ter se naučiš veliko novega.\n\nSvojega karakterja lahko premikaš s\ntipkami A, W, S in D.\nZa vstopanje v nove prostore in kvize,\nuporabi tipko E.\nZa pošiljanje sporočila pritisni tipko ENTER.";

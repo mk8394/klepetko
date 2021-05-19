@@ -1,7 +1,7 @@
 // Schoolyard scene (Main Scene)
 
 import Player from '../classes/Player.js';
-const socketURL = `${window.location.hostname}`;
+const socketURL = `${window.location.hostname}:3000`;
 export const socket = io.connect(socketURL, {secure: true});
 
 import { setSocketEvents, removeSocketEvents } from '../helpers/socketEvents.js'

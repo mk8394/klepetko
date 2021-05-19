@@ -206,8 +206,13 @@ a {
 }
 
 @font-face {
-    font-family: Klepetko;
+	font-family: Klepetko;
     src: url(../assets/Fonts/Quicksand/static/Quicksand-Bold.ttf);
+}
+
+@font-face {
+	font-family: Klepetko1;
+    src: url(../assets/Fonts/Quicksand/static/Quicksand-Regular.ttf);
 }
 
 #chat {
