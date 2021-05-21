@@ -1,0 +1,95 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+#scrabble {
+    position: absolute;
+    background-image: linear-gradient(to bottom right, #f1eb49, #f4b044);
+    padding: 0;
+    margin: 0;
+    width: 1920px;
+    height: 1080px;
+    z-index: 50;
+}
+
+.scrabble-header-element {
+    border: 2px solid #ec4599;
+    border-radius: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    color: #ec4599;
+    background: none;
+}
+
+#scrabble-start-btn, #scrabble-guess-btn, #scrabble-finish-btn {
+    font-weight: 600;
+    position: absolute;
+    left: 810px;
+    margin-top: 50px;
+}
+
+#scrabble-finish-btn {
+    font-weight: 600;
+    position: absolute;
+    left: 835px;
+    margin-top: 50px;
+}
+
+#scrabble-next-btn {
+    font-weight: 600;
+    position: absolute;
+    left: 775px;
+    margin-top: 50px;
+}
+
+#scrabble-start-btn:hover, #scrabble-guess-btn:hover, #scrabble-next-btn:hover, #scrabble-finish-btn:hover {
+    cursor: pointer;
+}
+
+#scrabble-msg {
+    font-size: 100px;
+    color: #f1eb49;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    letter-spacing: 20px;
+}
+
+#scrabble-input {
+    font-size: 50px;
+    width: 400px;
+    height: 70px;
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+}
+
+#scrabble-main-content {
+    text-align: center;
+    margin-top: 150px;
+    margin-left: 460px;
+    background-color: #ec4599;
+    width: 1000px;
+    height: 500px;
+    border-radius: 30px;
+}
+
+#scrabble-response {
+    font-weight: 500;
+    color: #ec4599;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.purple-text {
+    margin-top: 200px;
+    text-align: center;
+    color: #ec4599;
+    font-size: 60px;
+}
+
+#scrabble-main-text {
+    margin-top: 300px;
+}

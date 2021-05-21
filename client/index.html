@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/quiz.css">
     <link rel="stylesheet" href="assets/login.css">
     <link rel="stylesheet" href="assets/dragndrop.css">
+    <link rel="stylesheet" href="assets/scrabble.css">
     <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
 </head>
 
@@ -30,8 +31,8 @@
                     <input id="msg" type="text" placeholder="Povej nekaj..." required autocomplete="off" />
                     <div id="emoji_wrapper" style="display: none">
                         <emoji-picker style="transform: scale(1.3);"></emoji-picker>
-                    </div>    
-                    
+                    </div>
+
                     <script>
                         document.querySelector('emoji-picker')
                             .addEventListener('emoji-click', event => {
@@ -45,7 +46,7 @@
         </div>
 
         <div id="quiz" style="display: none;">
-            <img src="assets/ang-emote.png" style="position: absolute; left: 800px; top: 50px; width: 75px">
+            <img src="assets/quiz/ang-emote.png" style="position: absolute; left: 800px; top: 50px; width: 75px">
             <div id="header">
                 <div id="quiz-scorediv" class="header-element">
                     <h2 id="quiz-score">Rezultat: 0/5</h2>
@@ -72,16 +73,15 @@
                             prikazuje predmet na sliki</p>
                     </div>
                     <p id="quiz-response" class="yellow-text hide" style="font-size: 40px;"></p>
-                    <button id="quiz-start-btn" class="quiz-start-btn"></button>
-                    <button id="quiz-next-btn" class="quiz-next-btn btn hide">Naslednje vprašanje</button>
-                    <button id="quiz-finish-btn" class="quiz-finish-btn btn hide">Izhod</button>
-                    </button>
+                    <img src="assets/Quiz/Klepetko_Login-Screen-05.png" id="quiz-start-btn">
+                    <img src="assets/Quiz/Klepetko_Login-Screen-22.png" id="quiz-next-btn" class="hide">
+                    <img src="assets/Quiz/Klepetko_Login-Screen-23.png" id="quiz-finish-btn" class="hide">
                 </div>
             </div>
         </div>
 
         <div id="dragndrop" style="display: none;">
-            <img src="assets/mat-emote.png" style="position: absolute; left: 805px; top: 40px; width: 75px">
+            <img src="assets/quiz/mat-emote.png" style="position: absolute; left: 805px; top: 40px; width: 75px">
             <div id="header">
                 <div id="dnd-scorediv" class="header-element">
                     <h2 id="dnd-score">Rezultat: 0/6</h2>
@@ -105,7 +105,7 @@
                         <p class="dnd-draggable" draggable="true">13</p>
                     </div>
                     <div id="dnd-question" class="dnd-question-grid">
-                        
+
                     </div>
                 </div>
                 <div class="dnd-controls" style="text-align: center;">
@@ -115,11 +115,39 @@
                             danimi računi</p>
                     </div>
                     <p id="dnd-response" class="yellow-text hide" style="font-size: 40px;"></p>
-                    <button id="dnd-start-btn" class="dnd-start-btn"></button>
-                    <button id="dnd-finish-btn" class="dnd-finish-btn btn hide">Izhod</button>
-                    </button>
+                    <img src="assets/Quiz/Klepetko_Login-Screen-05.png" id="dnd-start-btn">
+                    <img src="assets/Quiz/Klepetko_Login-Screen-23.png" id="dnd-finish-btn" class="hide">
                 </div>
             </div>
+        </div>
+        <div id="scrabble" style="display: block">
+            <img src="assets/quiz/slo-emote.png" style="position: absolute; left: 795px; top: 40px; width: 75px">
+            <div id="header">
+                <div id="scrabble-scorediv" class="scrabble-header-element">
+                    <h2 id="scrabble-score">Rezultat: 0/5</h2>
+                </div>
+                <div class="scrabble-header-element" style="margin-right: 170px;">
+                    <h2>SLOVENŠČINA</h2>
+                </div>
+                <button id="scrabble-exit-btn" class="scrabble-header-element scrabble-btn"
+                    style="font-size: 20px; padding-right: 20px; padding-left: 20px;">
+                    X
+                </button>
+            </div>
+            <div id="scrabble-main-content" class="scrabble-container hide">
+                <h3 id="scrabble-msg" class="scrabble-msg"></h3>
+                <input id="scrabble-input" type="text" class="hide">
+            </div>
+            <div id="scrabble-main-text">
+                <p class="purple-text" style="font-weight: 800;">Dobrodošli v kvizu iz Slovenščine</p>
+                <p class="purple-text" style="font-size: 30px; margin-top: 30px">Iz zmešanih črk sestavite pravilno
+                    besedo</p>
+            </div>
+            <p id="scrabble-response" class="hide" style="font-size: 40px;">asd</p>
+            <img src="assets/quiz/Klepetko_Login-Screen-05.png" id="scrabble-start-btn">
+            <img src="assets/Quiz/Klepetko_Login-Screen-21.png" id="scrabble-guess-btn" class="hide">
+            <img src="assets/Quiz/Klepetko_Login-Screen-22.png" id="scrabble-next-btn" class="hide">
+            <img src="assets/Quiz/Klepetko_Login-Screen-23.png" id="scrabble-finish-btn" class="hide">
         </div>
     </div>
 
@@ -127,6 +155,7 @@
     <script type="module" src="game.js"></script>
     <script defer src="quiz.js"></script>
     <script defer src="dragndrop.js"></script>
+    <script defer src="scrabble.js"></script>
 </body>
 
 </html>
