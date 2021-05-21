@@ -4,7 +4,7 @@ import Player from '../classes/Player.js';
 import { socket } from './MainScene.js';
 
 import { setSocketEvents, removeSocketEvents } from '../helpers/socketEvents.js'
-import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, setBounds, createHUD } from '../helpers/clientData.js';
+import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, setBounds, createHUD, loadingAnim } from '../helpers/clientData.js';
 
 export default class HallwayScene extends Phaser.Scene {
     constructor() {
@@ -34,6 +34,7 @@ export default class HallwayScene extends Phaser.Scene {
     }
 
     preload() {
+        loadingAnim(this);
         Player.preload(this);
         this.load.image('Hallway', 'assets/rooms/Hallway.png');
         setSocketEvents(this);
@@ -49,7 +50,7 @@ export default class HallwayScene extends Phaser.Scene {
     createBackground() {
         
         this.add.image(gameData.width/2, 490, 'Hallway');
-        this.add.text(0,0,'Hallway');
+        // this.add.text(0,0,'Hallway');
 
         this.schoolExit = this.matter.add.rectangle(gameData.width/2, 880, 120, 70, 0xff0000, 1);
         this.schoolExit.isStatic = true;

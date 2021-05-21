@@ -76,6 +76,7 @@ export let animsFemalePaths = [
 ]
 
 let isHelpOpen = false;
+let isMapOpen = false;
 
 export const message = (scene) => {
     let message = new Message(scene);
@@ -180,16 +181,24 @@ export const preloadHUD = (scene) => {
     scene.load.image('SLO', '../assets/HUD/SLO.png');
     scene.load.image('ANG', '../assets/HUD/ANG.png');
     scene.load.image('MAT', '../assets/HUD/MAT.png');
+    scene.load.image('MapMain', '../assets/HUD/Map/Outside.png');
+    scene.load.image('MapHallway', '../assets/HUD/Map/Hallway.png');
+    scene.load.image('MapClassroom', '../assets/HUD/Map/Classroom.png');
+    scene.load.image('MapLocker', '../assets/HUD/Map/Locker.png');
 }
 
 export const createHUD = (scene) => {
     scene.add.rectangle(gameData.width / 2, gameData.height / 2, 1920, 1080, 0xffffff);
     scene.add.image(gameData.width / 2, gameData.height - 60, 'HUD');
-    scene.add.image(1758, 1030, 'Map');
+    const map = scene.add.image(1758, 1030, 'Map');
     scene.add.image(204, 1030, 'Coins');
     scene.add.text(195, 1014, playerData.coins, { fontFamily: 'Klepetko', fontSize: 30, color: '#DED7E9' });
     const chatbox = document.getElementById("chat-main");
     const chat = scene.add.image(70, 1030, 'Chat');
+    map.setInteractive({ useHandCursor: true })
+        .on('pointerdown', () => {
+            showMap(scene);
+        });
     chat.setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
             if (chatbox.style.display == 'none') {
@@ -215,6 +224,8 @@ export const createHUD = (scene) => {
             }
         });
     // scene.add.image(80, 1030, 'Profile').scale = 0.28;
+    showHelp(scene);
+    showHelp(scene);
 }
 
 export const setBounds = (scene) => {
@@ -250,3 +261,56 @@ export const showHelp = (scene) => {
 }
 const boldText = "Živijo in dobrodošel v Klepetku!\n\n\n\n\n\n\n\n\n\n\n\nŽelim ti veliko lepih trenutkov!\nTvoj Klepetko"
 const helpText = "Tukaj se lahko pogovarjaš s\nsvojimi prijatelji, spoznaš nove\nsovrstnike ter se naučiš veliko novega.\n\nSvojega karakterja lahko premikaš s\ntipkami A, W, S in D.\nZa vstopanje v nove prostore in kvize,\nuporabi tipko E.\nZa pošiljanje sporočila pritisni tipko ENTER.";
+
+export const showMap = (scene) => {
+    let mapName = ""
+    switch(playerData.scene) {
+        case "MainScene": {
+            mapName = 'MapMain';
+            break;
+        }
+        case "HallwayScene": {
+            mapName = 'MapHallway';
+            break;
+        }
+        case "ClassroomScene": {
+            mapName = 'MapClassroom';
+            break;
+        }
+        case "LockerScene": {
+            mapName = 'MapLocker';
+            break;
+        }
+    }
+    if (!isMapOpen) {
+        scene.mapPopup = scene.add.image(gameData.width / 2, gameData.height / 2, mapName);
+        isMapOpen = true;
+    } else {
+        scene.mapPopup.destroy();
+        isMapOpen = false;
+    }
+}
+
+export const loadingAnim = (scene) => {
+    var progressBG = scene.add.graphics();
+        var progressBar = scene.add.graphics();
+        var progressBox = scene.add.graphics();
+        progressBG.fillStyle(0xEF4288, 1);
+        progressBox.fillStyle(0x222222, 0.2);
+        progressBG.fillRect(0, 0, gameData.width, gameData.height);
+        progressBox.fillRoundedRect(gameData.width/2-160, gameData.height/2-25, 320, 50, 25);
+        scene.load.on('progress', function (value) {
+            progressBar.clear();
+            progressBar.fillStyle(0xffffff, 1);
+            progressBar.fillRoundedRect(gameData.width/2-150, gameData.height/2-15, 300 * value, 30, 15);
+        });
+
+        scene.load.on('fileprogress', function (file) {
+            
+        });
+
+        scene.load.on('complete', function () {
+            progressBar.destroy();
+            progressBox.destroy();
+        });
+}

@@ -50,4 +50,32 @@ export default class TweenHelper {
             });
         }
     }
+
+    static loadingRotation(scene, element, rotation, repeat = false, easing = 'Linear', overallDuration = 300, visiblePauseDuration = 500) {
+        if (scene && element) {
+
+            let flashDuration = overallDuration - visiblePauseDuration / 2;
+
+            scene.tweens.timeline({
+                tweens: [
+                    {
+                        targets: element,
+                        duration: 0,
+                        alpha: 1,
+                        ease: easing,
+                        rotation: 0,
+                        scale: 1
+                    },
+                    {
+                        targets: element,
+                        duration: flashDuration,
+                        alpha: 1,
+                        ease: easing,
+                        rotation: rotation,
+                        scale: 1
+                    }
+                ]
+            });
+        }
+    }
 }

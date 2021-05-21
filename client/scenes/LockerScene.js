@@ -4,7 +4,7 @@ import Player from '../classes/Player.js';
 import { socket } from './MainScene.js';
 
 import { setSocketEvents, removeSocketEvents } from '../helpers/socketEvents.js'
-import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, setBounds, createHUD } from '../helpers/clientData.js';
+import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, setBounds, createHUD, loadingAnim } from '../helpers/clientData.js';
 
 export default class LockerScene extends Phaser.Scene {
     constructor() {
@@ -22,6 +22,7 @@ export default class LockerScene extends Phaser.Scene {
     }
 
     preload() {
+        loadingAnim(this);
         Player.preload(this);
         this.load.image('Locker', 'assets/Rooms/Locker.png');
         setSocketEvents(this);
@@ -37,7 +38,7 @@ export default class LockerScene extends Phaser.Scene {
     createBackground() {
         
         this.add.image(gameData.width / 2, 490, 'Locker');
-        this.add.text(0, 0, 'Locker');
+        // this.add.text(0, 0, 'Locker');
 
         this.lockerExit = this.matter.add.rectangle(80, gameData.height/2-60, 50, 100, 0xff0000, 1);
         this.lockerExit.isStatic = true;

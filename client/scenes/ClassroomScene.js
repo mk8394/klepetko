@@ -5,7 +5,7 @@ import TweenHelper from '../helpers/tweenHelper.js';
 import { socket } from './MainScene.js';
 
 import { setSocketEvents, removeSocketEvents } from '../helpers/socketEvents.js'
-import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, setBounds, createHUD } from '../helpers/clientData.js';
+import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, setBounds, createHUD, loadingAnim } from '../helpers/clientData.js';
 
 export default class ClassroomScene extends Phaser.Scene {
     constructor() {
@@ -23,6 +23,7 @@ export default class ClassroomScene extends Phaser.Scene {
     }
 
     preload() {
+        loadingAnim(this);
         Player.preload(this);
         this.load.image('Classroom', 'assets/Rooms/Classroom.png');
         setSocketEvents(this);
@@ -38,7 +39,7 @@ export default class ClassroomScene extends Phaser.Scene {
     createBackground() {
         
         this.add.image(gameData.width / 2, 490, 'Classroom');
-        this.add.text(0, 0, 'Classroom');
+        // this.add.text(0, 0, 'Classroom');
 
         this.classroomExit = this.matter.add.rectangle(gameData.width-80, gameData.height/2-60, 50, 100, 0xff0000, 1);
         this.classroomExit.isStatic = true;

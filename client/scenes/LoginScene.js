@@ -65,8 +65,6 @@ export default class LoginScene extends Phaser.Scene {
                 let username = document.getElementById('username_input').value;
 
                 if (username != "") {
-                    var chat = document.getElementById("chat");
-                    chat.style.display = "block";
                     login.style.display = "none";
                     this.startGame(username);
                 }
