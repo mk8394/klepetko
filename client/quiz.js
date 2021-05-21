@@ -9,8 +9,6 @@ const quizPhotoElement = document.getElementById('quiz-photo');
 const quizScore = document.getElementById('quiz-score');
 const quizMainText = document.getElementById('quiz-main-text');
 const quizResponse = document.getElementById("quiz-response");
-const game = document.getElementById('game');
-const chat = document.getElementById('chat');
 
 let shuffledQuestions, currentQuestionIndex;
 let quizCorrectAnswers = 0;
