@@ -93,9 +93,9 @@
 }
 
 #quiz-photo {
-  position: fixed;
-  top: 262px;
-  left: 350px;
+  position: absolute;
+  top: 245px;
+  left: 150px;
   background-color: white;
   border-radius: 30px;
   padding: 50px;

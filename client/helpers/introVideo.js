@@ -12,6 +12,7 @@ vid.load();
 
 vid.height = 1080;
 vid.width = 1920;
+vid.muted = 'muted';
 
 vid.style.position = 'absolute';
 vid.style.top = 0;

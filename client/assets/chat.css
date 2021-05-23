@@ -258,3 +258,10 @@ input:focus{
 #chat-main {
 	white-space: normal;
 }
+
+input:required {
+    box-shadow:none;
+}
+/* input:invalid {
+    box-shadow:0 0 3px red;
+} */
