@@ -26,34 +26,37 @@ const dndQuestions = [
 ];
 
 const dnd = document.getElementById('dragndrop');
-const dndStartButton = document.getElementById('dnd-start-btn');
+//const dndStartButton = document.getElementById('dnd-start-btn');
+const dndCheckButton = document.getElementById('dnd-check-btn');
 const dndFinishButton = document.getElementById('dnd-finish-btn');
 const dndExitButton = document.getElementById('dnd-exit-btn');
-const dndDraggables = document.querySelectorAll(".dnd-draggable");
+const dndAnswersElement = document.getElementById("dnd-draggables")
 const dndQuestionElement = document.getElementById("dnd-question");
-const dndAnswerElement = document.getElementById('dnd-draggables');
 const dndScore = document.getElementById("dnd-score");
 const dndResponse = document.getElementById("dnd-response");
 const dndMainText = document.getElementById("dnd-main-text");
 const dndContainer = document.getElementById("dnd-question-container");
 
-//dndStartButton.addEventListener('click', dndStart);
-
 dndExitButton.addEventListener('click', dndFinishGame);
 
 let dndCorrectAnswers = 0;
-var isCorrect = false;
+let dndAnswered = 0;
 
-//function dndStart() {
+dndStartGame();
+
+function dndStartGame() {
     dndSetQuestions(dndQuestions);
-//}
+    dndSetAnswers(dndQuestions);
+    //dndStartButton.classList.add('hide');
+    //dndMainText.classList.add('hide');
+    //dndContainer.classList.remove('hide');
+    dndFinishButton.classList.add("hide");
+    dndMainText.classList.remove("hide");
+    dndCorrectAnswers = 0;
+    dndScore.innerHTML = `Rezultat: 0/6`;
+}
 
 function dndSetQuestions(questions) {
-    dndStartButton.classList.add('hide');
-    dndMainText.classList.add('hide');
-    dndContainer.classList.remove('hide');
-    dndCorrectAnswers = 0;
-    dndScore.innerHTML = `Rezultat: 0/6`
     questions.forEach(question => {
         const equation = question.question;
         const newQuestion = document.createElement('div');
@@ -66,30 +69,25 @@ function dndSetQuestions(questions) {
     });
 }
 
+function dndSetAnswers(questions) {
+    questions.forEach(question => {
+        const newDraggable = document.createElement("p");
+        newDraggable.innerText = question.answer;
+        newDraggable.classList.add("dnd-draggable");
+        newDraggable.draggable = true;
+        dndAnswersElement.appendChild(newDraggable);
+    });
+}
+
+const dndDraggables = document.querySelectorAll(".dnd-draggable");
 dndDraggables.forEach(draggable => {
     draggable.addEventListener('dragstart', () => {
         draggable.classList.add("dragging");
+        draggable.style.margin = 20;
     });
     draggable.addEventListener('dragend', () => {
         draggable.classList.remove('dragging');
-        if (isCorrect) {
-            draggable.classList.remove("dnd-draggable");
-            draggable.classList.remove("dnd-wrong");
-            draggable.classList.add("dnd-correct");
-            draggable.draggable = false;
-            dndCorrectAnswers++;
-            dndScore.innerHTML = `Rezultat: ${dndCorrectAnswers}/6`;
-            isCorrect = false;
-        } else if (!isCorrect) {
-            draggable.classList.remove("dnd-correct");
-            draggable.classList.add("dnd-wrong");
-        }
-        if (dndCorrectAnswers == 6) {
-            dndFinishButton.classList.remove('hide');
-            dndFinishButton.addEventListener('click', dndFinishGame);
-            dndResponse.classList.remove('hide');
-            dndResponse.innerHTML = `Čestitke!<br>Pravilno ste odgovorili na vsa vprašanja!`;
-        }
+        dndAnswered++;
     });
 });
 
@@ -100,20 +98,59 @@ questions.forEach(question => {
         const draggable = document.querySelector('.dragging');
         if (question.childElementCount != 3) {
             question.appendChild(draggable);
-            dndCheckAnswer(draggable, question.dataset.correct);
+            draggable.dataset.answer = question.dataset.correct;
+            draggable.style.margin = 0;
+            if (dndAnswered == 1) {
+                dndCheckButton.classList.remove("hide");
+            }
         }
     });
 });
 
-function dndCheckAnswer(selectedAnswer, correctAnswer) {
-    isCorrect = false;
-    const answer = selectedAnswer.innerText;
-    if (answer == correctAnswer) isCorrect = true;
-    else isCorrect = false;
+dndCheckButton.addEventListener("click", function() {
+    dndCheckAnswers();
+});
+
+function dndCheckAnswers() {
+    dndDraggables.forEach(draggable => {
+        var correctAnswer = draggable.dataset.answer;
+        var answer = draggable.innerText;
+        draggable.draggable = false;
+        if (correctAnswer == answer) {
+            dndCorrectAnswers++;
+            draggable.classList.add("dnd-correct");
+        } else {
+            draggable.classList.add("dnd-wrong");
+        };
+        draggable.style.margin = "10px";
+    });
+    if (dndCorrectAnswers == 0) dndResponse.innerText = `Žal nisi pravilno izračunal nobenega računa :(`
+    if (dndCorrectAnswers == 1) dndResponse.innerText = `Pravilno si povezal ${dndCorrectAnswers} matematični račun!`
+    if (dndCorrectAnswers == 2) dndResponse.innerText = `Pravilno si povezal ${dndCorrectAnswers} matematična računa!`
+    if (dndCorrectAnswers == 3) dndResponse.innerText = `Pravilno si povezal ${dndCorrectAnswers} matematične račune!`
+    if (dndCorrectAnswers == 6) dndResponse.innerText = `Pravilno si povezal vseh ${dndCorrectAnswers} matematičnih računov! :)`
+    dndScore.innerHTML = `Rezultat: ${dndCorrectAnswers}/6`;
+    dndCheckButton.classList.add("hide");
+    dndFinishButton.classList.remove("hide");
+    dndResponse.classList.remove("hide");
+    dndMainText.classList.add("hide");
+}
+
+dndFinishButton.addEventListener("click", function() {
+    dndFinishGame();
+});
+
+function dndRemoveElements() {
+    dndQuestionElement.innerHTML = "";
+    dndAnswersElement.innerHTML = "";
 }
 
 function dndFinishGame() {
-    dndCorrectAnswers = 0;
-    quizScore.innerHTML = `Rezultat: 0/6`;
+    dndScore.innerHTML = `Rezultat: 0/6`;
     dnd.style.display = "none";
+    dndResponse.classList.add("hide");
+    dndAnswered = 0;
+    dndCorrectAnswers = 0;
+    dndRemoveElements();
+    dndStartGame();
 }

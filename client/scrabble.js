@@ -2,11 +2,11 @@ const scrabbleContainer = document.getElementById("scrabble");
 const scrabbleMainContainer = document.getElementById("scrabble-main-content");
 const scrabbleMsg = document.getElementById("scrabble-msg");
 const scrabbleInput = document.getElementById("scrabble-input");
-const scrabbleStartBtn = document.getElementById("scrabble-start-btn");
-const scrabbleGuessBtn = document.getElementById("scrabble-guess-btn");
-const scrabbleNextBtn = document.getElementById("scrabble-next-btn");
-const scrabbleExitBtn = document.getElementById("scrabble-exit-btn");
-const scrabbleFinishBtn = document.getElementById("scrabble-finish-btn");
+const scrabbleStartButton = document.getElementById("scrabble-start-btn");
+const scrabbleGuessButton = document.getElementById("scrabble-guess-btn");
+const scrabbleNextButton = document.getElementById("scrabble-next-btn");
+const scrabbleExitButton = document.getElementById("scrabble-exit-btn");
+const scrabbleFinishButton = document.getElementById("scrabble-finish-btn");
 const scrabbleScore = document.getElementById("scrabble-score");
 const scrabbleResponse = document.getElementById("scrabble-response");
 const scrabbleMainText = document.getElementById("scrabble-main-text");
@@ -39,50 +39,50 @@ const scrabbleSetNewQuestion = () => {
     newWords = scrabbleCreateQuestions();
     randWords = scrabble(newWords.split("")).join("");
     scrabbleMsg.innerHTML = randWords;
-    scrabbleGuessBtn.classList.remove("hide");
-    scrabbleNextBtn.classList.add("hide");
+    scrabbleGuessButton.classList.remove("hide");
+    scrabbleNextButton.classList.add("hide");
 }
 
-scrabbleStartBtn.addEventListener("click", function () {
+scrabbleStartButton.addEventListener("click", function () {
     scrabbleMainText.classList.add("hide");
     scrabbleMainContainer.classList.remove("hide");
-    scrabbleStartBtn.classList.add("hide");
+    scrabbleStartButton.classList.add("hide");
     scrabbleInput.classList.remove("hide");
     scrabbleSetNewQuestion();
 });
 
-scrabbleGuessBtn.addEventListener("click", function () {
+scrabbleGuessButton.addEventListener("click", function () {
     let tempWord = scrabbleInput.value;
     scrabbleAnswers++;
     if (tempWord === newWords) {
         scrabbleCorrectAnswers++;
         scrabbleScore.innerHTML = `Rezultat ${scrabbleCorrectAnswers}/5`;
         scrabbleResponse.innerText = "Bravo! Ugotovil si pravilno!";
-        scrabbleNextBtn.classList.remove("hide");
+        scrabbleNextButton.classList.remove("hide");
     } else {
         scrabbleResponse.innerText = "Žal si odgovoril napačno :(";
-        scrabbleNextBtn.classList.remove("hide");
+        scrabbleNextButton.classList.remove("hide");
     }
     if (scrabbleAnswers == 5) {
-        scrabbleNextBtn.classList.add("hide");
-        scrabbleFinishBtn.classList.remove("hide");
+        scrabbleNextButton.classList.add("hide");
+        scrabbleFinishButton.classList.remove("hide");
         scrabbleResponse.innerText = `Tvoj rezultat: ${scrabbleCorrectAnswers}`;
     }
     scrabbleResponse.classList.remove("hide");
-    scrabbleGuessBtn.classList.add("hide");
+    scrabbleGuessButton.classList.add("hide");
 });
 
-scrabbleNextBtn.addEventListener("click", function () {
+scrabbleNextButton.addEventListener("click", function () {
     scrabbleResponse.classList.add("hide");
     scrabbleInput.value = "";
     scrabbleSetNewQuestion();
 });
 
-scrabbleFinishBtn.addEventListener("click", function () {
+scrabbleFinishButton.addEventListener("click", function () {
     scrabbleExitGame();
 });
 
-scrabbleExitBtn.addEventListener("click", function () {
+scrabbleExitButton.addEventListener("click", function () {
     scrabbleExitGame();
 });
 
