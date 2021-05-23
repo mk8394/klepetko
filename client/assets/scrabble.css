@@ -45,6 +45,11 @@
     margin-top: 50px;
 }
 
+#scrabble-exit-btn:hover {
+    color: #f1eb49;
+    background-color: #ec4599;
+  }
+
 #scrabble-start-btn:hover, #scrabble-guess-btn:hover, #scrabble-next-btn:hover, #scrabble-finish-btn:hover {
     cursor: pointer;
 }

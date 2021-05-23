@@ -89,6 +89,15 @@ scrabbleExitButton.addEventListener("click", function () {
 function scrabbleExitGame() {
     scrabbleScore.innerHTML = `Rezultat 0/5`
     scrabbleContainer.style.display = "none";
+    scrabbleResponse.classList.add("hide");
+    scrabbleNextButton.classList.add("hide");
+    scrabbleStartButton.classList.remove("hide");
+    scrabbleMainText.classList.remove("hide");
+    scrabbleMainContainer.classList.add("hide");
+    scrabbleInput.classList.add("hide");
+    scrabbleGuessButton.classList.add("hide");
+    scrabbleFinishButton.classList.add("hide");
+    scrabbleInput.value = "";
     scrabbleCorrectAnswers = 0;
     scrabbleAnswers = 0;
 }
