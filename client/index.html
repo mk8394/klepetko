@@ -86,43 +86,38 @@
         <div id="dragndrop" style="display: none;">
             <img src="assets/quiz/mat-emote.png" style="position: absolute; left: 805px; top: 40px; width: 75px">
             <div id="header">
-                <div id="dnd-scorediv" class="header-element">
+                <div id="dnd-scorediv" class="dnd-header-element">
                     <h2 id="dnd-score">Rezultat: 0/6</h2>
                 </div>
-                <div class="header-element" style="margin-right: 170px;">
+                <div class="dnd-header-element" style="margin-right: 170px;">
                     <h2>MATEMATIKA</h2>
                 </div>
-                <button id="dnd-exit-btn" class="header-element btn"
+                <button id="dnd-exit-btn" class="dnd-header-element btn"
                     style="font-size: 20px; padding-right: 20px; padding-left: 20px;">
                     X
                 </button>
             </div>
             <div id="dnd-main-container" class="dnd-container">
-                <div id="dnd-question-container" class="hide">
+                <div id="dnd-question-container" class="">
                     <div id="dnd-draggables" class="dnd-draggables-grid">
-                        <p class="dnd-draggable" draggable="true">9</p>
-                        <p class="dnd-draggable" draggable="true">11</p>
-                        <p class="dnd-draggable" draggable="true">8</p>
-                        <p class="dnd-draggable" draggable="true">7</p>
-                        <p class="dnd-draggable" draggable="true">10</p>
-                        <p class="dnd-draggable" draggable="true">13</p>
                     </div>
                     <div id="dnd-question" class="dnd-question-grid">
-
                     </div>
                 </div>
                 <div class="dnd-controls" style="text-align: center;">
                     <div id="dnd-main-text">
-                        <p class="yellow-text" style="font-weight: 800;">Dobrodošli v kvizu iz Matematike</p>
-                        <p class="yellow-text" style="font-size: 30px; margin-top: 30px">Ustrezno povežite rezultate z
+                        <!--<p class="yellow-text" style="font-weight: 800;">Dobrodošli v kvizu iz Matematike</p>-->
+                        <p class="yellow-text instructions" style="font-size: 40px; margin-top: 30px">Ustrezno povežite rezultate z
                             danimi računi</p>
                     </div>
                     <p id="dnd-response" class="yellow-text hide" style="font-size: 40px;"></p>
-                    <img src="assets/Quiz/Klepetko_Login-Screen-05.png" id="dnd-start-btn">
+                    <img src="assets/Quiz/Klepetko_Login-Screen-05.png" id="dnd-start-btn" class="hide">
+                    <img src="assets/Quiz/Klepetko_login-Screen-21.png" id="dnd-check-btn" class="hide">
                     <img src="assets/Quiz/Klepetko_Login-Screen-23.png" id="dnd-finish-btn" class="hide">
                 </div>
             </div>
         </div>
+
         <div id="scrabble" style="display: none">
             <img src="assets/quiz/slo-emote.png" style="position: absolute; left: 795px; top: 40px; width: 75px">
             <div id="header">
@@ -147,7 +142,7 @@
                     besedo</p>
             </div>
             <p id="scrabble-response" class="hide" style="font-size: 40px;">asd</p>
-            <img src="assets/quiz/Klepetko_Login-Screen-05.png" id="scrabble-start-btn">
+            <img src="assets/Quiz/Klepetko_Login-Screen-05.png" id="scrabble-start-btn">
             <img src="assets/Quiz/Klepetko_Login-Screen-21.png" id="scrabble-guess-btn" class="hide">
             <img src="assets/Quiz/Klepetko_Login-Screen-22.png" id="scrabble-next-btn" class="hide">
             <img src="assets/Quiz/Klepetko_Login-Screen-23.png" id="scrabble-finish-btn" class="hide">

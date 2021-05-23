@@ -1,141 +1,144 @@
 *, *::before, *::after {
-    box-sizing: border-box;
-  }  
+  box-sizing: border-box;
+}
 
-  #dragndrop {
-    position: absolute;
-    background-image: linear-gradient(to bottom right, #ec4599, #ef474c);
-    padding: 0;
-    margin: 0;
-    width: 1920px;
-    height: 1080px;
-    z-index: 51;
-  }
+#dragndrop {
+  position: absolute;
+  background-image: linear-gradient(to bottom right, #7658a5, #73CCD4);
+  padding: 0;
+  margin: 0;
+  width: 1920px;
+  height: 1080px;
+  z-index: 51;
+}
 
-  .dnd-draggables-grid{
-    display: grid;
-    position: relative;
-    top: 180px;
-    left: 1200px;
-    grid-template-columns: repeat(2, 200px);
-  }
+.dnd-header-element {
+  border: 2px solid #f1eb49;
+  border-radius: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  color: #f1eb49;
+  background: none;
+}
 
-  .dnd-draggable {
-    border-radius: 50px;
-    background-color: #f1eb49;
-    color: #7658a5;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-    margin: 20px;
-    padding-top: 22px;
-    font-family: 'quicksand';
-    cursor: move;
-    border: none;
-  }
+.dnd-draggables-grid {
+  display: grid;
+  position: relative;
+  top: 180px;
+  left: 1200px;
+  grid-template-columns: repeat(2, 200px);
+}
 
-  .dnd-question-grid{
-    display: grid;
-    position: absolute;
-    top: 250px;
-    left: 250px;
-    grid-template-columns: repeat(2, 400px);
-  }
+.dnd-draggable {
+  border-radius: 50px;
+  background-color: #f1eb49;
+  color: #7658a5;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  padding-top: 22px;
+  font-family: 'quicksand';
+  cursor: move;
+  border: none;
+}
 
-  .dnd-question {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    color: #7658a5;
-    font-size: 40px;
-    height: 100px;
-    margin: 20px;
-    width: 300px;
-    border-radius: 50px;
-    padding-left: 20px;
-  }
+.dnd-question-grid {
+  display: grid;
+  position: absolute;
+  top: 250px;
+  left: 250px;
+  grid-template-columns: repeat(2, 400px);
+}
 
-  .dnd-draggable.dragging {
-    opacity: 0.5;
-    margin: 0px !important;
-  }
+.dnd-question {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  color: #7658a5;
+  font-size: 40px;
+  height: 100px;
+  margin: 20px;
+  width: 300px;
+  border-radius: 50px;
+  padding-left: 20px;
+}
 
-  .dnd-correct {
-    background-color: #75C165;
-    border-radius: 40px;
-    color: #7658a5;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    width: 80px;
-    height: 80px;
-    margin-top: 10px;
-    margin-right: 10px;
-    padding-top: 16px;
-    font-family: 'quicksand';
-    cursor: move;
-    border: none;
-    cursor: not-allowed;
-  }
+.dnd-draggable.dragging {
+  opacity: 0.5;
+}
 
-  .dnd-wrong {
-    background-color: #ef474c;
-    border-radius: 40px;
-    color: #7658a5;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    width: 80px;
-    height: 80px;
-    margin-top: 10px;
-    margin-right: 10px;
-    padding-top: 16px;
-    font-family: 'quicksand';
-    cursor: move;
-    border: none;
-  }
+.dnd-correct {
+  background-color: #75C165;
+  border-radius: 40px;
+  color: #7658a5;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding-top: 16px;
+  font-family: 'quicksand';
+  border: none;
+  cursor: not-allowed;
+}
 
-  .dnd-start-btn {
-    background: url(./Klepetko_Login-Screen-05.png);
-    background-repeat: no-repeat;
-    background-size: 300px;
-    position: relative;
-    top: 200px;
-    left: 65  px;
-    width: 425px;
-    height: 131px;
-    border: none;
-  }
+.dnd-wrong {
+  background-color: #ef474c;
+  border-radius: 40px;
+  color: #7658a5;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding-top: 16px;
+  font-family: 'quicksand';
+  cursor: move;
+  border: none;
+  cursor: not-allowed;
+}
 
-  .dnd-start-btn:hover {
-    cursor: pointer;
-  }
+#dnd-start-btn:hover, #dnd-check-btn:hover, #dnd-finish-btn:hover {
+  cursor: pointer;
+}
 
-  .dnd-finish-btn {
-    background: none;
-    color: #f1eb49;
-    border: 2px solid #f1eb49;
-    border-radius: 30px;
-    font-size: 25px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-top: 20px;
-    position: relative;
-    top: 800px;
-  }
+#dnd-check-btn {
+  position: absolute;
+  top: 800px;
+  left: 800px;
+}
 
-  #dnd-response {
-    font-weight: 800;
-    text-align: center;
-    margin-top: 10px;
-    position: relative;
-    top: 800px;
-  }
+#dnd-finish-btn {
+  position: absolute;
+  top: 830px;
+  left: 820px;
+}
 
-  
+#dnd-response {
+  font-weight: 800;
+  text-align: center;
+  margin-top: 10px;
+  position: relative;
+  top: 650px;
+}
+
 #equationFrom {
-  padding-top: 25px;
-  padding-left: 15px;
+  padding-top: 28px;
+  padding-left: 25px;
+}
+
+.instructions {
+  position: absolute;
+  top: 135px;
+  left: 560px;
 }
