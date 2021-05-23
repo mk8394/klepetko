@@ -145,7 +145,7 @@ const quizQuestions = [
         ]
     },
     {
-        photo: 'assets/Quiz/Klepetko_Anglescina_Igra-11.png',
+        photo: 'assets/Quiz/Klepetko_Anglescina_igra-11.png',
         answers: [
             { text: 'PEAR', correct: false },
             { text: 'APPLE', correct: true },

@@ -24,7 +24,7 @@ export default class LockerScene extends Phaser.Scene {
     preload() {
         loadingAnim(this);
         Player.preload(this);
-        this.load.image('Locker', 'assets/Rooms/Locker.png');
+        this.load.image('Locker', './assets/Rooms/Locker.png');
         setSocketEvents(this);
     }
 

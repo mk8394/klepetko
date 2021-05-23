@@ -36,7 +36,7 @@ export default class HallwayScene extends Phaser.Scene {
     preload() {
         loadingAnim(this);
         Player.preload(this);
-        this.load.image('Hallway', 'assets/rooms/Hallway.png');
+        this.load.image('Hallway', './assets/Rooms/Hallway.png');
         setSocketEvents(this);
     }
 
