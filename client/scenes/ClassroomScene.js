@@ -127,6 +127,25 @@ export default class ClassroomScene extends Phaser.Scene {
             this.MAT.clearTint();
             TweenHelper.resetElement(this, this.MAT);
         }
+
+        this.scrabbleEnterance = this.matter.add.rectangle(370, 420, 50, 50, 0x000000, 1);
+        this.scrabbleEnterance.isStatic = true;
+        this.scrabbleEnteranceBorder = this.matter.add.rectangle(370, 420, 70, 70, 0x000000, 1);
+        this.scrabbleEnteranceBorder.isStatic = true;
+
+        this.scrabbleEnterance.onCollideCallback = () => {
+            this.enterText = this.add.image(317, 365, 'Play');
+            TweenHelper.flashElement(this, this.SLO, 0.2);
+            this.SLO.tint = 0xEAF400;
+            this.input.keyboard.on('keydown_E', () => this.enterScrabble(), this);
+        }
+
+        this.scrabbleEnterance.onCollideEndCallback = () => {
+            this.enterText.destroy();
+            this.input.keyboard.removeAllListeners('keydown_E');
+            this.SLO.clearTint();
+            TweenHelper.resetElement(this, this.SLO);
+        }
     }
 
     update() {
@@ -164,6 +183,15 @@ export default class ClassroomScene extends Phaser.Scene {
         // var game = document.getElementById("game");
         // game.style.display = "none";
         var dnd = document.getElementById("dragndrop");
+        dnd.style.display = "block"; 
+    }
+
+    enterScrabble() {
+        // var chat = document.getElementById("chat");
+        // chat.style.display = "none";
+        // var game = document.getElementById("game");
+        // game.style.display = "none";
+        var dnd = document.getElementById("scrabble");
         dnd.style.display = "block"; 
     }
 

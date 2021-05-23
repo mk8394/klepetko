@@ -4,7 +4,7 @@ import Player from '../classes/Player.js';
 import { socket } from './MainScene.js';
 
 import { setSocketEvents, removeSocketEvents } from '../helpers/socketEvents.js'
-import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, setBounds, createHUD, loadingAnim } from '../helpers/clientData.js';
+import { users, message, spawnPlayer, spawnOtherUser, playerData, changeRoom, gameData, createHUD, preloadHUD, setBounds, skinsMale, framesMale, framesMalePaths, atlasMalePaths, animsMalePaths, animsNames, skinsFemale, framesFemale, framesFemalePaths, atlasFemalePaths, animsFemalePaths, loadingAnim } from '../helpers/clientData.js';
 
 export default class LockerScene extends Phaser.Scene {
     constructor() {
@@ -72,6 +72,18 @@ export default class LockerScene extends Phaser.Scene {
             }
             this.input.keyboard.removeAllListeners('keydown_E');
         }
+
+        // // Change outfit
+        // this.changeOutfit = this.matter.add.rectangle(665, 665, 50, 50, 0x000000, 1);
+        // this.changeOutfit.isStatic = true;
+        // this.changeOutfitBorder = this.matter.add.rectangle(665, 665, 70, 70, 0x000000, 1);
+        // this.changeOutfitBorder.isStatic = true;
+
+        // this.changeOutfit.onCollideCallback = () => {
+        //     this.enterText = this.add.image(607, 575, 'ExitText');
+        //     this.input.keyboard.on('keydown_E', () => this.changeOutfitFun(), this);
+        // }
+
     }
 
     update() {
@@ -93,6 +105,26 @@ export default class LockerScene extends Phaser.Scene {
     exitLocker() {
         changeRoom(4, 2, this);
     }
+
+    // changeOutfitFun() {
+    //     if (playerData.isMale == true) {
+    //         this.skinNUM = Math.floor(Math.random() * 3);
+    //         playerData.skin = skinsMale[this.skinNUM];
+    //         playerData.frame = framesMale[this.skinNUM];
+    //         playerData.framesPath = framesMalePaths[this.skinNUM];
+    //         playerData.atlasPath = atlasMalePaths[this.skinNUM];
+    //         playerData.animsPath = animsMalePaths[this.skinNUM];
+    //         playerData.animsNames = animsNames[this.skinNUM];
+    //     } else {
+    //         this.skinNUM = Math.floor(Math.random() * 3) + 4;
+    //         playerData.skin = skinsMale[this.skinNUM];
+    //         playerData.frame = framesMale[this.skinNUM];
+    //         playerData.framesPath = framesMalePaths[this.skinNUM];
+    //         playerData.atlasPath = atlasMalePaths[this.skinNUM];
+    //         playerData.animsPath = animsMalePaths[this.skinNUM];
+    //         playerData.animsNames = animsNames[this.skinNUM];
+    //     }
+    // }
 
 }
 

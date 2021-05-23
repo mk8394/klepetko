@@ -47,5 +47,5 @@ vid.addEventListener('ended', function(e) {
   */
   setTimeout(function() {
     document.getElementById('game').removeChild(vid);
-  }, 2000);
+  }, 500);
 }, false);

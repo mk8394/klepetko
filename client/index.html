@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="assets/dragndrop.css">
     <link rel="stylesheet" href="assets/scrabble.css">
     <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+
+    <title>Klepetko</title>
+    <link rel="shortcut icon" href="./assets/HUD/Favicon.png"/>
 </head>
 
-<body>
+<body style="display: flex; justify-content: center;">
     <div id="game" height="1080" width="1920" style="position: relative">
         <div id="login_wrapper" height="1080" width="1920">
             <input id="username_input" type="text" name="login" placeholder="Vzdevek" required autocomplete="off"
@@ -120,7 +123,7 @@
                 </div>
             </div>
         </div>
-        <div id="scrabble" style="display: block">
+        <div id="scrabble" style="display: none">
             <img src="assets/quiz/slo-emote.png" style="position: absolute; left: 795px; top: 40px; width: 75px">
             <div id="header">
                 <div id="scrabble-scorediv" class="scrabble-header-element">

@@ -47,7 +47,7 @@ export default class LoginScene extends Phaser.Scene {
         this.add.image(gameData.width / 2, 531, 'Input');
         const M = this.add.sprite(902, 643, 'Moski');
         const F = this.add.sprite(1022, 643, 'Zenska');
-        const help = this.add.image(1351, 895, 'Help');
+        // const help = this.add.image(1351, 895, 'Help');
 
         this.isMale = true;
 

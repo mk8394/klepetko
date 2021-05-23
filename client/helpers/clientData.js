@@ -28,7 +28,7 @@ export let animsNames = [
     ['walk_front_08', 'walk_back_08', 'walk_right_08', 'walk_left_08', 'idle_front_08'],
 ]
 
-export let playerData = { id: null, skin: 'boy_01', frame: 'boy_m1-c2_front_', framesPath: '../assets/character/Atlases/boy_01.png', atlasPath: '../assets/character/Atlases/boy_01_atlas.json', animsPath: '../assets/character/Atlases/boy_01_anim.json', animsNames: animsNames[0], scene: scenes[0], coins: 9123 };
+export let playerData = { id: null, skin: 'boy_01', frame: 'boy_m1-c2_front_', framesPath: '../assets/character/Atlases/boy_01.png', atlasPath: '../assets/character/Atlases/boy_01_atlas.json', animsPath: '../assets/character/Atlases/boy_01_anim.json', animsNames: animsNames[0], scene: scenes[0], coins: 0 };
 
 export let skinsMale = ['boy_01', 'boy_02', 'boy_03', 'boy_04', 'girl_01', 'girl_02', 'girl_03', 'girl_04'];
 export let framesMale = ['boy_m1-c2_front_', 'boy_m1-c3_front_', 'boy_m1-c4_front_', 'boy_m1-c1_front_', 'girl_m1-c1_front_', 'girl_m1-c2_front_', 'girl_m1-c3_front_', 'girl_m1-c4_front_'];
@@ -237,10 +237,10 @@ export const setBounds = (scene) => {
 
 export const showHelp = (scene) => {
     if (!isHelpOpen) {
-        scene.helpPopup = scene.add.image(gameData.width / 2, gameData.height / 2, 'HelpPopup');
+        scene.helpPopup = scene.add.image(gameData.width / 2, gameData.height / 2 - 60, 'HelpPopup');
         scene.helpPopup.scale = 1.2;
         isHelpOpen = true;
-        scene.helpClose = scene.add.image(1400, 300, 'HelpClose');
+        scene.helpClose = scene.add.image(1400, 300 - 60, 'HelpClose');
         scene.helpClose.setInteractive({ useHandCursor: true })
             .on('pointerdown', () => {
                 scene.helpPopup.destroy();
@@ -249,8 +249,8 @@ export const showHelp = (scene) => {
                 scene.boldText.destroy();
                 isHelpOpen = false;
             });
-        scene.helpText = scene.add.text(gameData.width / 2 - 50, gameData.height / 2 - 120, helpText, { fontFamily: 'Klepetko1', fontSize: 20, color: '#ED4599' });
-        scene.boldText = scene.add.text(gameData.width / 2 - 50, gameData.height / 2 - 155, boldText, { fontFamily: 'Klepetko', fontSize: 20, color: '#ED4599' });
+        scene.helpText = scene.add.text(gameData.width / 2 - 50, gameData.height / 2 - 120 - 60, helpText, { fontFamily: 'Klepetko1', fontSize: 20, color: '#ED4599' });
+        scene.boldText = scene.add.text(gameData.width / 2 - 50, gameData.height / 2 - 155 - 60, boldText, { fontFamily: 'Klepetko', fontSize: 20, color: '#ED4599' });
     } else {
         scene.helpPopup.destroy();
         scene.helpClose.destroy();

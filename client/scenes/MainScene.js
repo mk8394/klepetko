@@ -23,6 +23,7 @@ export default class MainScene extends Phaser.Scene {
             playerData.chat = document.getElementById("chat");
             playerData.chatBool = true;
             if (data.isMale == true) {
+                playerData.isMale = true;
                 this.skinNUM = Math.floor(Math.random() * 3);
                 playerData.skin = skinsMale[this.skinNUM];
                 playerData.frame = framesMale[this.skinNUM];
@@ -31,6 +32,7 @@ export default class MainScene extends Phaser.Scene {
                 playerData.animsPath = animsMalePaths[this.skinNUM];
                 playerData.animsNames = animsNames[this.skinNUM];
             } else {
+                playerData.isMale = false;
                 this.skinNUM = Math.floor(Math.random() * 3) + 4;
                 playerData.skin = skinsMale[this.skinNUM];
                 playerData.frame = framesMale[this.skinNUM];

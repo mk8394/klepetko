@@ -14,19 +14,19 @@ export default class HallwayScene extends Phaser.Scene {
     init(data) {
         this.playerName = data.player.usernameText;
         data.player.server.changeRoom(playerData.id, 2);
-        if(data.prevRoom == 3) {
+        if (data.prevRoom == 3) {
             this.playerSpawn = {
                 x: 300,
-                y: gameData.height/2 - 100
+                y: gameData.height / 2 - 100
             }
         } else if (data.prevRoom == 4) {
             this.playerSpawn = {
                 x: 1620,
-                y: gameData.height/2 - 100
+                y: gameData.height / 2 - 100
             }
         } else {
             this.playerSpawn = {
-                x: gameData.width/2,
+                x: gameData.width / 2,
                 y: 650
             }
         }
@@ -48,33 +48,33 @@ export default class HallwayScene extends Phaser.Scene {
     }
 
     createBackground() {
-        
-        this.add.image(gameData.width/2, 490, 'Hallway');
+
+        this.add.image(gameData.width / 2, 490, 'Hallway');
         // this.add.text(0,0,'Hallway');
 
-        this.schoolExit = this.matter.add.rectangle(gameData.width/2, 880, 120, 70, 0xff0000, 1);
+        this.schoolExit = this.matter.add.rectangle(gameData.width / 2, 880, 100, 50, 0xff0000, 1);
         this.schoolExit.isStatic = true;
-        this.schoolExitBorder = this.matter.add.rectangle(gameData.width/2, 880, 120, 70, 0xff0000, 1);
+        this.schoolExitBorder = this.matter.add.rectangle(gameData.width / 2, 880, 120, 70, 0xff0000, 1);
         this.schoolExitBorder.isStatic = true;
 
-        this.classroomEnter = this.matter.add.rectangle(80, gameData.height/2-60, 50, 100, 0xff0000, 1);
+        this.classroomEnter = this.matter.add.rectangle(80, gameData.height / 2 - 60, 50, 100, 0xff0000, 1);
         this.classroomEnter.isStatic = true;
-        this.classroomEnterBorder = this.matter.add.rectangle(80, gameData.height/2-60, 70, 120, 0xff0000, 1);
+        this.classroomEnterBorder = this.matter.add.rectangle(80, gameData.height / 2 - 60, 70, 120, 0xff0000, 1);
         this.classroomEnterBorder.isStatic = true;
 
-        this.lockerEnter = this.matter.add.rectangle(gameData.width-80, gameData.height/2-60, 50, 100, 0xff0000, 1);
+        this.lockerEnter = this.matter.add.rectangle(gameData.width - 80, gameData.height / 2 - 60, 50, 100, 0xff0000, 1);
         this.lockerEnter.isStatic = true;
-        this.lockerEnterBorder = this.matter.add.rectangle(gameData.width-80, gameData.height/2-60, 70, 120, 0xff0000, 1);
+        this.lockerEnterBorder = this.matter.add.rectangle(gameData.width - 80, gameData.height / 2 - 60, 70, 120, 0xff0000, 1);
         this.lockerEnterBorder.isStatic = true;
     }
 
     createHitboxes() {
-        this.matter.add.rectangle(gameData.width/2, 77, gameData.width, 100, 0xff0000).isStatic = true;
-        this.matter.add.rectangle(gameData.width/2, 883, gameData.width, 100, 0xff0000).isStatic = true;
-        this.matter.add.rectangle(0, gameData.height/2, 300, gameData.height, 0xff0000).isStatic = true;
-        this.matter.add.rectangle(gameData.width, gameData.height/2, 300, gameData.height, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(gameData.width / 2, 77, gameData.width, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(gameData.width / 2, 883, gameData.width, 100, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(0, gameData.height / 2, 300, gameData.height, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(gameData.width, gameData.height / 2, 300, gameData.height, 0xff0000).isStatic = true;
 
-        this.matter.add.rectangle(gameData.width-210, 160, 100, 60, 0xff0000).isStatic = true;
+        this.matter.add.rectangle(gameData.width - 210, 160, 100, 60, 0xff0000).isStatic = true;
         this.matter.add.rectangle(210, 160, 100, 60, 0xff0000).isStatic = true;
 
         this.matter.add.rectangle(557, 160, 40, 60, 0xff0000).isStatic = true;
@@ -85,17 +85,8 @@ export default class HallwayScene extends Phaser.Scene {
 
     createCollisionEvents() {
 
-        // Exit school
-        this.schoolExit.onCollideCallback = (pair) => {
-            if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.image(gameData.width/2, 650, 'ExitText');
-                // this.exitText.scale = 0.3;
-                this.input.keyboard.on('keydown_E', () => this.leaveSchool(), this);
-            }
-        };
-
         this.schoolExit.onCollideEndCallback = (pair) => {
-            if(this.exitText && pair.bodyB.gameObject.id == playerData.id) {
+            if (this.exitText && pair.bodyB.gameObject.id == playerData.id) {
                 this.exitText.destroy();
             }
             this.input.keyboard.removeAllListeners('keydown_E');
@@ -103,15 +94,15 @@ export default class HallwayScene extends Phaser.Scene {
 
         // Enter classroom
         this.classroomEnter.onCollideCallback = (pair) => {
-            if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.image(170, gameData.height/2-200, 'EnterText');
+            if (pair.bodyB.gameObject.id == playerData.id) {
+                this.exitText = this.add.image(170, gameData.height / 2 - 200, 'EnterText');
                 // this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.enterClassroom(), this);
             }
         };
 
         this.classroomEnter.onCollideEndCallback = (pair) => {
-            if(this.exitText && pair.bodyB.gameObject.id == playerData.id) {
+            if (this.exitText && pair.bodyB.gameObject.id == playerData.id) {
                 this.exitText.destroy();
             }
             this.input.keyboard.removeAllListeners('keydown_E');
@@ -119,19 +110,28 @@ export default class HallwayScene extends Phaser.Scene {
 
         // Enter locker
         this.lockerEnter.onCollideCallback = (pair) => {
-            if(pair.bodyB.gameObject.id == playerData.id) {
-                this.exitText = this.add.image(gameData.width-170, gameData.height/2-200, 'EnterText');
+            if (pair.bodyB.gameObject.id == playerData.id) {
+                this.exitText = this.add.image(gameData.width - 170, gameData.height / 2 - 200, 'EnterText');
                 // this.exitText.scale = 0.3;
                 this.input.keyboard.on('keydown_E', () => this.enterLocker(), this);
             }
         };
 
         this.lockerEnter.onCollideEndCallback = (pair) => {
-            if(this.exitText && pair.bodyB.gameObject.id == playerData.id) {
+            if (this.exitText && pair.bodyB.gameObject.id == playerData.id) {
                 this.exitText.destroy();
             }
             this.input.keyboard.removeAllListeners('keydown_E');
         }
+
+        // Exit school
+        this.schoolExit.onCollideCallback = (pair) => {
+            if (pair.bodyB.gameObject.id == playerData.id) {
+                this.exitText = this.add.image(gameData.width / 2, 650, 'ExitText');
+                // this.exitText.scale = 0.3;
+                this.input.keyboard.on('keydown_E', () => this.leaveSchool(), this);
+            }
+        };
 
     }
 
@@ -139,7 +139,7 @@ export default class HallwayScene extends Phaser.Scene {
         this.player.update();
 
         // Disable movement while typing (may get removed for efficency)
-        if(this.message.input === document.activeElement) {
+        if (this.message.input === document.activeElement) {
             this.input.keyboard.enabled = false;
         } else {
             this.input.keyboard.enabled = true;

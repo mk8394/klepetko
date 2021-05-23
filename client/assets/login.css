@@ -25,11 +25,13 @@ input:focus{
 }
 
 video.playing {
+    margin: auto;
     opacity: 1;
     transition: opacity 1s ease;
 }
 
 video {
+    margin: auto;
     opacity: 0;
     transition: opacity 1s ease;
     /* position: absolute;

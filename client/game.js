@@ -13,10 +13,13 @@ var config = {
     dom: {
         createContainer: true
     },
+    scale: {
+        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
+    },
     physics: {
         default: 'matter',
         matter: {
-            debug: false,
+            debug: true,
             gravity: { y: 0 },
             setBounds: true
         }
