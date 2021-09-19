@@ -24,15 +24,15 @@ var config = {
             setBounds: true
         }
     },
-    plugins: {
-        scene: [
-            {
-                plugin: PhaserMatterCollisionPlugin,
-                key: 'matterCollision',
-                mapping: 'matterCollision'
-            }
-        ]
-    },
+    // plugins: {
+    //     scene: [
+    //         {
+    //             plugin: PhaserMatterCollisionPlugin,
+    //             key: 'matterCollision',
+    //             mapping: 'matterCollision'
+    //         }
+    //     ]
+    // },
     scene: [LoginScene, MainScene, HallwayScene, ClassroomScene, LockerScene]
 };
 
