@@ -1,0 +1,424 @@
+{
+    "frames": [
+        {
+            "filename": "girl_m1-c4_character_back",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 5,
+                "y": 5
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_behind1",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 128,
+                "y": 5
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_behind2",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 5,
+                "y": 135
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_behind3",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 128,
+                "y": 135
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_behind4",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 251,
+                "y": 5
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_behind5",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 251,
+                "y": 135
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_behind6",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 5,
+                "y": 265
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_front_",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 128,
+                "y": 265
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_front__1",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 251,
+                "y": 265
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_front__2",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 374,
+                "y": 5
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_front__3",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 374,
+                "y": 135
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_front__4",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 374,
+                "y": 265
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_front",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 5,
+                "y": 395
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_front_1",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 128,
+                "y": 395
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 251,
+                "y": 395
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d1_",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 374,
+                "y": 395
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d2",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 497,
+                "y": 5
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d3_",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 497,
+                "y": 135
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d4_",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 497,
+                "y": 265
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d5",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 497,
+                "y": 395
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d6_",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 5,
+                "y": 525
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d7_",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 128,
+                "y": 525
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_d8",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 251,
+                "y": 525
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 374,
+                "y": 525
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l1",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 497,
+                "y": 525
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l2",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 620,
+                "y": 5
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l3",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 620,
+                "y": 135
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l4",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 620,
+                "y": 265
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l5",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 620,
+                "y": 395
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l6",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 620,
+                "y": 525
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l7",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 5,
+                "y": 655
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "girl_m1-c4_character_side_l8",
+            "frame": {
+                "w": 118,
+                "h": 125,
+                "x": 128,
+                "y": 655
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Gamma V2",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}

@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+:root {
+	--dark-color-a: transparent;
+	--dark-color-b: #b548fd;
+	--light-color: #f9e6ff;
+	--success-color: #5cb85c;
+	--error-color: #d9534f;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.chat-messages::-webkit-scrollbar {
+	display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .chat-messages {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+  }
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	margin: 20px;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.btn {
+	cursor: pointer;
+	padding: 5px 15px;
+	background: var(--light-color);
+	color: var(--dark-color-a);
+	border: 0;
+	font-size: 17px;
+}
+
+/* Chat Page */
+
+.chat-container {
+	max-width: 1100px;
+	background: transparent;
+	margin: 30px;
+	overflow: hidden;
+}
+
+.chat-header {
+	background: var(--dark-color-a);
+	color: transparent;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.chat-main {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+}
+
+.chat-sidebar {
+	background: var(--dark-color-b);
+	color: transparent;
+	padding: 20px 20px 60px;
+	overflow-y: scroll;
+}
+
+.chat-sidebar h2 {
+	font-size: 20px;
+	background: rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.chat-sidebar h3 {
+	margin-bottom: 15px;
+}
+
+.chat-sidebar ul li {
+	padding: 10px 0;
+}
+
+.chat-messages {
+	padding: 10px;
+	padding-bottom: 0px;
+	height: 400px;
+	overflow-y: scroll;
+	position: absolute;
+	width: 400px;
+	top: 565px;
+	left: 14px;
+	background-color: rgba(169, 64, 255, 0.349);
+	border-radius: 15px;
+}
+
+.chat-messages .message {
+	padding: 10px;
+	margin-bottom: 15px;
+	background-color: var(--light-color);
+	border-radius: 5px;
+}
+
+.chat-messages .message .meta {
+	font-size: 17pt;
+	font-family: Klepetko;
+	color: var(--dark-color-b);
+	opacity: 0.7;
+	margin-bottom: 7px;
+}
+
+.chat-messages .message .meta span {
+	color: #777;
+}
+
+.chat-form-container {
+	padding: 20px 30px;
+	background-color: var(--dark-color-a);
+}
+
+.chat-form-container form {
+	display: flex;
+}
+
+.chat-form-container input[type='text'] {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	flex: 1;
+}
+
+/* Join Page */
+.join-container {
+	max-width: 500px;
+	margin: 80px auto;
+	color: #fff;
+}
+
+.join-header {
+	text-align: center;
+	padding: 20px;
+	background: var(--dark-color-a);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.join-main {
+	padding: 30px 40px;
+	background: var(--dark-color-b);
+}
+
+.join-main p {
+	margin-bottom: 20px;
+}
+
+.join-main .form-control {
+	margin-bottom: 20px;
+}
+
+.join-main label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.join-main input[type='text'] {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main select {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main .btn {
+	margin-top: 20px;
+	width: 100%;
+}
+
+@media (max-width: 700px) {
+	.chat-main {
+		display: block;
+	}
+
+	.chat-sidebar {
+		display: none;
+	}
+}
+
+@font-face {
+	font-family: Klepetko;
+    src: url(../assets/Fonts/Quicksand/static/Quicksand-Bold.ttf);
+}
+
+@font-face {
+	font-family: Klepetko1;
+    src: url(../assets/Fonts/Quicksand/static/Quicksand-Regular.ttf);
+}
+
+#chat {
+	width: 100%;
+  	height: 100%;
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+	z-index: 10;
+}
+
+#msg {
+    background: transparent;
+    border: none;
+    position: absolute;
+    left: 400px;
+    top: 995px;
+    height: 70px;
+    width: 1100px;
+    font-size: 18pt;
+    font-family: Klepetko;
+    text-align: left;
+	color: white;
+}
+
+#emoji_wrapper {
+	position: absolute;
+	top: 500px;
+	left: 1340px;
+}
+
+input:focus{
+    outline: none;
+}
+
+.text {
+	font-size: 15pt;
+	font-family: Klepetko;
+	text-overflow: ellipsis;
+	width: 350px;
+}
+
+#chat-main {
+	white-space: normal;
+}
+
+input:required {
+    box-shadow:none;
+}
+/* input:invalid {
+    box-shadow:0 0 3px red;
+} */

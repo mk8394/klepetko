@@ -1,0 +1,47 @@
+@font-face {
+    font-family: Klepetko;
+    src: url(../assets/Fonts/Quicksand/static/Quicksand-Bold.ttf);
+}
+
+#login_wrapper {
+    display: none;
+}
+
+#username_input {
+    background: transparent;
+    border: none;
+    position: absolute;
+    left: 790px;
+    top: 495px;
+    height: 70px;
+    width: 350px;
+    font-size: 25pt;
+    font-family: Klepetko;
+    text-align: center;
+}
+
+input:focus{
+    outline: none;
+}
+
+video.playing {
+    margin: auto;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+video {
+    margin: auto;
+    opacity: 0;
+    transition: opacity 1s ease;
+    /* position: absolute;
+    width: 1920px;
+    height: 1080px; */
+}
+
+#skip-btn {
+    display: none;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}

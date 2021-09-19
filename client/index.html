@@ -1,22 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="background-color: rgb(255, 255, 255);">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.23.0/dist/phaser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser-matter-collision-plugin"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <link rel="stylesheet" href="assets/chat.css">
+    <link rel="stylesheet" href="assets/quiz.css">
+    <link rel="stylesheet" href="assets/login.css">
+    <link rel="stylesheet" href="assets/dragndrop.css">
+    <link rel="stylesheet" href="assets/scrabble.css">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+
     <title>Klepetko</title>
+    <link rel="shortcut icon" href="./assets/HUD/Favicon.png"/>
 </head>
 
-<body>
-    <h1>Klepetko</h1>
-    <input id="username" type="text" placeholder="Username">
-    <button id="connectBtn" onClick="connect()" disabled>Connect</button>
+<body style="display: flex; justify-content: center;">
+    <div id="game" height="1080" width="1920" style="position: relative">
+        <div id="login_wrapper" height="1080" width="1920">
+            <input id="username_input" type="text" name="login" placeholder="Vzdevek" required autocomplete="off"
+                maxlength="10">
+        </div>
 
-    <canvas id="ctx" width="720" height="480" style="background-color: aliceblue; display: none; margin-left: 20px"></canvas>
+        <div id="chat" style="display: none;" height="1080" width="1920">
+            <div class="chat-container">
+                <main class="chat-main" id="chat-main">
+                    <div class="chat-messages">
+                    </div>
+                </main>
+                <div class="chat-form-container">
+                    <!-- <form id="chat-form"> -->
+                    <input id="msg" type="text" placeholder="Povej nekaj..." required autocomplete="off" />
+                    <div id="emoji_wrapper" style="display: none">
+                        <emoji-picker style="transform: scale(1.3);"></emoji-picker>
+                    </div>
+
+                    <script>
+                        document.querySelector('emoji-picker')
+                            .addEventListener('emoji-click', event => {
+                                document.querySelector('#msg').value += event.detail.unicode;
+                            });
+                    </script>
+                    <!-- <button class="btn"><i class="fas fa-paper-plane"></i> Pošlji</button> -->
+                    <!-- </form> -->
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz" style="display: none;">
+            <img src="assets/Quiz/ang-emote.png" style="position: absolute; left: 800px; top: 50px; width: 75px">
+            <div id="header">
+                <div id="quiz-scorediv" class="header-element">
+                    <h2 id="quiz-score">Rezultat: 0/5</h2>
+                </div>
+                <div class="header-element" style="margin-right: 170px;">
+                    <h2>ANGLEŠČINA</h2>
+                </div>
+                <button id="quiz-exit-btn" class="header-element btn"
+                    style="font-size: 20px; padding-right: 20px; padding-left: 20px;">
+                    X
+                </button>
+            </div>
+            <div id="quiz-main-container" class="quiz-container">
+                <div id="quiz-question-container" class="hide">
+                    <div id="quiz-answer-buttons" class="quiz-btn-grid">
+                    </div>
+                    <div id="quiz-photo" class="quiz-photo">
+                    </div>
+                </div>
+                <div class="quiz-controls" style="text-align: center;">
+                    <div id="quiz-main-text">
+                        <p class="yellow-text" style="font-weight: 800;">Dobrodošli v kvizu iz Angleščine</p>
+                        <p class="yellow-text" style="font-size: 30px; margin-top: 30px">Označi ustrezno besedo, ki
+                            prikazuje predmet na sliki</p>
+                    </div>
+                    <p id="quiz-response" class="yellow-text hide" style="font-size: 40px;"></p>
+                    <img src="assets/Quiz/Klepetko_Login-Screen-05.png" id="quiz-start-btn">
+                    <img src="assets/Quiz/Klepetko_Login-Screen-22.png" id="quiz-next-btn" class="hide">
+                    <img src="assets/Quiz/Klepetko_Login-Screen-23.png" id="quiz-finish-btn" class="hide">
+                </div>
+            </div>
+        </div>
+
+        <div id="dragndrop" style="display: none;">
+            <img src="assets/Quiz/mat-emote.png" style="position: absolute; left: 805px; top: 40px; width: 75px">
+            <div id="header">
+                <div id="dnd-scorediv" class="dnd-header-element">
+                    <h2 id="dnd-score">Rezultat: 0/6</h2>
+                </div>
+                <div class="dnd-header-element" style="margin-right: 170px;">
+                    <h2>MATEMATIKA</h2>
+                </div>
+                <button id="dnd-exit-btn" class="dnd-header-element btn"
+                    style="font-size: 20px; padding-right: 20px; padding-left: 20px;">
+                    X
+                </button>
+            </div>
+            <div id="dnd-main-container" class="dnd-container">
+                <div id="dnd-question-container" class="">
+                    <div id="dnd-draggables" class="dnd-draggables-grid">
+                    </div>
+                    <div id="dnd-question" class="dnd-question-grid">
+                    </div>
+                </div>
+                <div class="dnd-controls" style="text-align: center;">
+                    <div id="dnd-main-text">
+                        <!--<p class="yellow-text" style="font-weight: 800;">Dobrodošli v kvizu iz Matematike</p>-->
+                        <p class="yellow-text instructions" style="font-size: 40px; margin-top: 30px">Ustrezno povežite rezultate z
+                            danimi računi</p>
+                    </div>
+                    <p id="dnd-response" class="yellow-text hide" style="font-size: 40px;"></p>
+                    <img src="assets/Quiz/Klepetko_Login-Screen-05.png" id="dnd-start-btn" class="hide">
+                    <img src="assets/Quiz/Klepetko_Login-Screen-21.png" id="dnd-check-btn" class="hide">
+                    <img src="assets/Quiz/Klepetko_Login-Screen-23.png" id="dnd-finish-btn" class="hide">
+                </div>
+            </div>
+        </div>
+
+        <div id="scrabble" style="display: none">
+            <img src="assets/Quiz/slo-emote.png" style="position: absolute; left: 795px; top: 40px; width: 75px">
+            <div id="header">
+                <div id="scrabble-scorediv" class="scrabble-header-element">
+                    <h2 id="scrabble-score">Rezultat: 0/5</h2>
+                </div>
+                <div class="scrabble-header-element" style="margin-right: 170px;">
+                    <h2>SLOVENŠČINA</h2>
+                </div>
+                <button id="scrabble-exit-btn" class="scrabble-header-element scrabble-btn"
+                    style="font-size: 20px; padding-right: 20px; padding-left: 20px;">
+                    X
+                </button>
+            </div>
+            <div id="scrabble-main-content" class="scrabble-container hide">
+                <h3 id="scrabble-msg" class="scrabble-msg"></h3>
+                <input id="scrabble-input" type="text" class="hide">
+            </div>
+            <div id="scrabble-main-text">
+                <p class="purple-text" style="font-weight: 800;">Dobrodošli v kvizu iz Slovenščine</p>
+                <p class="purple-text" style="font-size: 30px; margin-top: 30px">Iz zmešanih črk sestavite pravilno
+                    besedo</p>
+            </div>
+            <p id="scrabble-response" class="hide" style="font-size: 40px;">asd</p>
+            <img src="assets/Quiz/Klepetko_Login-Screen-05.png" id="scrabble-start-btn">
+            <img src="assets/Quiz/Klepetko_Login-Screen-21.png" id="scrabble-guess-btn" class="hide">
+            <img src="assets/Quiz/Klepetko_Login-Screen-22.png" id="scrabble-next-btn" class="hide">
+            <img src="assets/Quiz/Klepetko_Login-Screen-23.png" id="scrabble-finish-btn" class="hide">
+        </div>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="networking.js" type="text/javascript"></script>
+    <script type="module" src="game.js"></script>
+    <script defer src="quiz.js"></script>
+    <script defer src="dragndrop.js"></script>
+    <script defer src="./helpers/introVideo.js"></script>
+    <script defer src="scrabble.js"></script>
 </body>
 
 </html>
