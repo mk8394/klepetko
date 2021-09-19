@@ -7,32 +7,32 @@ import LockerScene from './scenes/LockerScene.js';
 
 var config = {
     type: Phaser.AUTO,
-    width: 1920,
-    height: 1080,
-    parent: 'game', // Name of the parent DIV
-    dom: {
-        createContainer: true
+    physics: {
+      default: 'matter',
+      matter: {
+        debug: false,
+        gravity: { y: 0 },
+        setBounds: true,
+      },
     },
     scale: {
-        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
+      mode: Phaser.Scale.FIT,
+      parent: 'game',
+      width: 1920,
+      height: 1080,
     },
-    physics: {
-        default: 'matter',
-        matter: {
-            debug: false,
-            gravity: { y: 0 },
-            setBounds: true
-        }
+    dom: {
+      createContainer: true
     },
-    plugins: {
-        scene: [
-            {
-                plugin: PhaserMatterCollisionPlugin,
-                key: 'matterCollison',
-                mapping: 'matterCollision'
-            }
-        ]
-    },
+    // plugins: {
+    //     scene: [
+    //         {
+    //             plugin: PhaserMatterCollisionPlugin,
+    //             key: 'matterCollision',
+    //             mapping: 'matterCollision'
+    //         }
+    //     ]
+    // },
     scene: [LoginScene, MainScene, HallwayScene, ClassroomScene, LockerScene]
 };
 
